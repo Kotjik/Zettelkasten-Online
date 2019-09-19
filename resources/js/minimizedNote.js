@@ -48,7 +48,7 @@ function translateColor(color){
       return "weinrot";
     case "red":
       return "rot";
-    case "greem":
+    case "green":
       return "grün";
     case "pink":
       return "pink";

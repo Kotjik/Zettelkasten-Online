@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zettelkastenboiz</title>
+    <title>Zettelkasten - Home</title>
     <link href="resources/css/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
@@ -23,12 +23,40 @@
     <div id="note-list">
         <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein"><br>
         <!-- <p style="float:left;">Nach Farbe filtern:</p><br> -->
-        <select id="sort-select">
-          <option selected value="last-updated">Zuletzt Bearbeitet(absteigend)</option>
-          <option value="created">Erstellt (absteigend)</option>
-          <option value="alphabetical">Alphabetisch (aufsteigend)</option>
-        </select>
+        <table>
+          <tr>
+            <th>Sortieren nach ...</th>
+            <th>Filtern nach Farbe</th>
+          </tr>
+          <tr>
+            <td>
+              <select id="sort-select">
+                <option value="last-updated-asc">Zuletzt Bearbeitet (aufsteigend)</option>
+                <option value="last-updated-desc">Zuletzt Bearbeitet (absteigend)</option>
+                <option value="created-asc">Erstellt (aufsteigend)</option>
+                <option value="created-desc">Erstellt (absteigend)</option>
+                <option value="alphabetical-asc">Alphabetisch (aufsteigend)</option>
+                <option value="alphabetical-desc">Alphabetisch (absteigend)</option>
+            </select>
+            </td>
+            <td>
+              <select id="filter-select">
+                <option value="nothing">- kein Filter -</option>
+                <option class="blue" value="blue">blau</option>
+                <option class="purple" value="purple">lila</option>
+                <option class="wine" value="wine">weinrot</option>
+                <option class="red" value="red">rot</option>
+                <option class="green" value="green">grün</option>
+                <option class="pink" value="pink">pink</option>
+                <option class="brown" value="brown">braun</option>
+                <option class="white" value="white">weiß</option>
+                <option class="black" value="black">schwarz</option>
+              </select>
+            </td>
+        </tr>
+        </table>
         <div id="button-new-note"> Neuer Zettel </div>
+
 
         <!-- <div id="0" class="note-minimized hidden">
             <div class="title-minimized"> Eintrag 1</div>
@@ -43,16 +71,7 @@
     <div id="note-full-window">
 
         <div id="" class="note-full hidden">
-            <div class="title-full"> Titel </div>
-            <div class="description-full"> Beschreibung </div>
-            <div class="source-full"> Quelle </div>
-            <div class="theme-full"> Thema </div>
-            <div class="color-box-full blue"></div>
-            <div class="last-updated-full"> Zuletzt geändert: DD.MM.YY HH:MM</div>
-            <div class="creation-full"> Erstellt: DD.MM.YY HH:MM </div>
-
-            <div class="close-button"> &times; </div>
-            <div class="edit-button"> Edit </div>
+            
         </div>
 
         <div id="note-editor" class="note-editor hidden">

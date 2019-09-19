@@ -11,6 +11,8 @@ class Note {
     this.id = Date.now().toString();
     this.creationDate = creationDate || getDate();
     this.lastUpdated = lastUpdated || getDate();
+    this.creationDateNoFormat = new Date();
+    this.lastUpdatedNoFormat = new Date();
   }
 
   setTitle(title) {
@@ -32,10 +34,19 @@ class Note {
   setColor(color) {
     this.color = color;
   }
+
+  setCreationDateNoFormat(date){
+    this.creationDateNoFormat = new Date(date);
+  }
+
+  setLastUpdated(date){
+    this.lastUpdated = date;
+    this.lastUpdatedNoFormat = new Date();
+  }
 }
 
-function getDate(){
-  let currentdate = new Date(),
+function getDate(date){
+  let currentdate = new Date() || date,
       dd = currentdate.getDate(),
       mm = currentdate.getMonth()+1,
       yyyy = currentdate.getFullYear(),

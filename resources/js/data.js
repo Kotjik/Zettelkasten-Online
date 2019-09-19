@@ -39,6 +39,13 @@ class Data {
   removeItem(key){
     localStorage.removeItem(key);
   }
+
+  getNoteById(id){
+    let currentNote = this.dataArray.filter(notes =>{
+      return notes.id === id;
+    })[0];
+    return currentNote;
+  }
 }
 
 function getNotesFromStorage(){

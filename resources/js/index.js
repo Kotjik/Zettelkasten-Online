@@ -3,10 +3,12 @@
 import Note from "./note.js";
 import Data from "./data.js";
 import MinimizedNote from "./minimizedNote.js";
+import FullNote from "./fullNote.js";
 
 function init() {
 	console.log(data.dataArray);
-
+	sortSelect.value = "last-updated-desc";
+	filterSelect.value = "nothing";
 	searchInput.value = "";
 	loadAllNotesToDOM();
 
@@ -32,9 +34,29 @@ let data = new Data(),
 		editButton = document.querySelector(".edit-button"),
 		searchInput = document.querySelector("#searchInput"),
 		sortSelect = document.querySelector("#sort-select"),
-		quill = new Quill('#description-input', {
+		filterSelect = document.querySelector("#filter-select"),
+		toolbarOptions = [
+		["bold", "italic", "underline", "strike"],				// toggled buttons
+		["blockquote", "code-block"],
+
+		[{ "header": 1 }, { "header": 2 }],								// custom button values
+		[{ "list": "ordered"}, { "list": "bullet" }],
+		[{ "script": "sub"}, { "script": "super" }],			// superscript/subscript
+		[{ "indent": "-1"}, { "indent": "+1" }],					// outdent/indent
+		[{ "direction": "rtl" }],													// text direction
+
+		[{ "size": ["small", false, "large", "huge"] }],	// custom dropdown
+		[{ "header": [1, 2, 3, 4, 5, 6, false] }],
+
+		[{ "color": [] }, { "background": [] }],					// dropdown with defaults from theme
+		[{ "font": [] }],
+		[{ "align": [] }],
+
+		["clean"], 																				// remove formatting button
+		],
+		quill = new Quill("#description-input", {
 			modules: {
-				toolbar: true,
+				toolbar: toolbarOptions,
 			},
 			placeholder: "Beschreibung",
 			theme:"snow",
@@ -49,17 +71,16 @@ for(let i=0; i<colorBoxes.length; i++){
 
 buttonNewNote.addEventListener("click", function(){
 	currentNoteId = 0;
+	document.querySelector("#title-input").innerHTML = "";
+	document.getElementById("source-input").innerHTML = "";
+	document.getElementById("theme-input").innerHTML = "";
+	document.querySelector(".ql-editor").innerHTML = "";
 	document.querySelector(".note-editor-heading").innerHTML = "Neuen Zettel anlegen";
 	buttonNewNoteDelete.classList.add("hidden");
 	openNoteEditor();
 });
 buttonNewNoteCancel.addEventListener("click", closeNewNoteEditor);
 buttonNewNoteSave.addEventListener("click", saveNote);
-closeButton.addEventListener("click", closeFullNote);
-editButton.addEventListener("click", function(){
-	buttonNewNoteDelete.classList.remove("hidden");
-	editNote(currentNoteId);
-});
 buttonNewNoteDelete.addEventListener("click", function(){
 	confirmDeletion();
 });
@@ -71,6 +92,11 @@ buttonDeleteCancel.addEventListener("click", function(){
 });
 searchInput.addEventListener("keyup", searchNotes);
 sortSelect.addEventListener("change", sortNotes);
+filterSelect.addEventListener("change", function(){
+	filterNotes(filterSelect.value);
+	filterSelect.className = filterSelect.value;
+});
+
 // functions
 
 function closeFullNote(){
@@ -118,6 +144,7 @@ function saveNote(){
 
 			newNote = new Note(titleInput, descriptionInput, sourceInput, themeInput, colorInput,
 												currentNote.creationDate);
+			newNote.setCreationDateNoFormat(currentNote.creationDateNoFormat);
 	}
 
 			data.addNoteToStorage(newNote);
@@ -143,34 +170,25 @@ function createNewMinimizedNote(note){
 function openFullNote(id){
 	closeNewNoteEditor();
 
-	let currentNote = data.dataArray.filter(notes =>{
-		return notes.id === id;
-	})[0];
-
+	let currentNote = data.getNoteById(id),
+			fullNote = new FullNote(currentNote.title, currentNote.description,
+									currentNote.source, currentNote.theme, currentNote.color,
+									currentNote.lastUpdated, currentNote.creationDate),
+			fullNoteHTMLElement = fullNote.getHTMLElement();
+	noteFullWindow.appendChild(fullNoteHTMLElement);
+	document.querySelector(".close-button").addEventListener("click", closeFullNote);
+	document.querySelector(".edit-button").addEventListener("click", function(){
+		buttonNewNoteDelete.classList.remove("hidden");
+		editNote(currentNoteId);
+	});
 	currentNoteId = id;
-
-	document.querySelector(".title-full").innerHTML = currentNote.title;
-	document.querySelector(".description-full").innerHTML = currentNote.description;
-	document.querySelector(".color-box-full").setAttribute("class", "color-box-full " + currentNote.color);
-	// document.querySelector(".source-full").innerHTML = "<b>Quelle</b>: " + currentNote.source;
-	document.querySelector(".source-full").innerHTML = "<b>Quelle</b>: <a href=\".\\sources.html?source="
-						+ currentNote.source + "\">" + currentNote.source + "</a>";
-	// document.querySelector(".theme-full").innerHTML = "<b>Thema</b>: " + currentNote.theme;
-	document.querySelector(".theme-full").innerHTML = "<b>Thema</b>: <a href=\".\\themes.html?theme="
-						+ currentNote.theme + "\">" + currentNote.theme + "</a>";
-	document.querySelector(".last-updated-full").innerHTML = "Zuletzt bearbeitet: " + currentNote.lastUpdated;
-	document.querySelector(".creation-full").innerHTML = "Erstellt: " + currentNote.creationDate;
-
-	noteFull.classList.remove("hidden");
 }
 
 function editNote(id){
 	noteFull.setAttribute("id", id);
-	let currentNote = data.dataArray.filter(notes =>{
-		return notes.id === id;
-	})[0];
+	let currentNote = data.getNoteById(id);
 
-	noteFull.classList.add("hidden");
+	document.getElementById("note-full").remove();
 
 	document.querySelector(".note-editor-heading").innerHTML = "Zettel bearbeiten";
 	openNoteEditor();
@@ -218,7 +236,7 @@ function loadAllNotesToDOM(){
 }
 
 //
-// Suchfunktion
+//Suche, Sortierung & Filter
 //
 function searchNotes(){
 	let filter, txtValue,
@@ -232,39 +250,7 @@ function searchNotes(){
 
 	for(let i = 0; i<notesMinimized.length; i++){
 		// txtValue = (notesMinimized[i].innerText || notesMinimized[i].textContent);
-		let colorValue;
-		switch(lookup[notesMinimized[i].id].color){
-			case "blue":
-				colorValue = "blau";
-				break;
-			case "purple":
-				colorValue = "lila";
-				break;
-			case "wine":
-				colorValue = "weinrot";
-				break;
-			case "red":
-				colorValue = "rot";
-				break;
-			case "greem":
-				colorValue = "grün";
-				break;
-			case "pink":
-				colorValue = "pinkrosa";
-				break;
-			case "brown":
-				colorValue = "braun";
-				break;
-			case "white":
-				colorValue = "weißweiss";
-				break;
-			case "black":
-				colorValue = "schwarz";
-				break;
-			default:
-				colorValue = "blaulilaweinrotgrünpinkroasbraunweißweissschwarz";
-				break;
-		}
+		let colorValue = translateColor(lookup[notesMinimized[i].id].color);
 
 		txtValue = lookup[notesMinimized[i].id].title + lookup[notesMinimized[i].id].description +
 							lookup[notesMinimized[i].id].source + lookup[notesMinimized[i].id].theme +
@@ -272,61 +258,129 @@ function searchNotes(){
 							lookup[notesMinimized[i].id].lastUpdated;
 
 		if(txtValue.toUpperCase().indexOf(filter) > -1){
-			notesMinimized[i].style.display = "";
+			notesMinimized[i].classList.remove("search-hidden");
 		}else{
-			notesMinimized[i].style.display = "none";
+			notesMinimized[i].classList.add("search-hidden");
 		}
 	}
 }
 
-//
-//Sortierfunktion
-//
 function sortNotes(){
 	while(buttonNewNote.nextSibling){
 		noteList.removeChild(buttonNewNote.nextSibling);
 	}
 	switch(sortSelect.value){
-		case "last-updated":
+		case "last-updated-asc":
 			data.dataArray.sort(function(a,b){
-				if(a.creationDate < b.creationDate) { return -1; }
-				if(a.creationDate > b.creationDate) { return 1; }
+				if(a.lastUpdatedNoFormat < b.lastUpdatedNoFormat) { return 1; }
+				if(a.lastUpdatedNoFormat > b.lastUpdatedNoFormat) { return -1; }
 				return 0;
 			});
-			loadAllNotesToDOM();
 			break;
-
-		case "created":
+		case "last-updated-desc":
 			data.dataArray.sort(function(a,b){
-				return a.creationDate - b.creationDate;
+				if(a.lastUpdatedNoFormat < b.lastUpdatedNoFormat) { return -1; }
+				if(a.lastUpdatedNoFormat > b.lastUpdatedNoFormat) { return 1; }
+				return 0;
 			});
-			loadAllNotesToDOM();
 			break;
 
-		case "alphabetical":
+		case "created-desc":
+			data.dataArray.sort(function(a,b){
+				if(a.creationDateNoFormat < b.creationDateNoFormat) { return -1; }
+				if(a.creationDateNoFormat > b.creationDateNoFormat) { return 1; }
+				return 0;
+			});
+			break;
+		case "created-asc":
+			data.dataArray.sort(function(a,b){
+				if(a.creationDateNoFormat < b.creationDateNoFormat) { return 1; }
+				if(a.creationDateNoFormat > b.creationDateNoFormat) { return -1; }
+				return 0;
+			});
+			break;
+
+		case "alphabetical-desc":
+			data.dataArray.sort(function(a,b){
+				if(a.title.toUpperCase() < b.title.toUpperCase()) { return -1; }
+				if(a.title.toUpperCase() > b.title.toUpperCase()) { return 1; }
+				return 0;
+			});
+			break;
+		case "alphabetical-asc":
 			data.dataArray.sort(function(a,b){
 				if(a.title.toUpperCase() < b.title.toUpperCase()) { return 1; }
 				if(a.title.toUpperCase() > b.title.toUpperCase()) { return -1; }
 				return 0;
 			});
-			loadAllNotesToDOM();
 			break;
 
 		default:
-			//do lastupdated
+			//do lastupdated-desc
 			data.dataArray.sort(function(a,b){
-				if(a.lastUpdated < b.lastUpdated) { return 1; }
-				if(a.lastUpdated > b.lastUpdated) { return -1; }
+				if(a.lastUpdatedNoFormat < b.lastUpdatedNoFormat) { return -1; }
+				if(a.lastUpdatedNoFormat > b.lastUpdatedNoFormat) { return 1; }
 				return 0;
 			});
-			loadAllNotesToDOM();
 			break;
+	}
+	loadAllNotesToDOM();
+	filterNotes(filterSelect.value);
+	searchNotes();
+}
+
+function filterNotes(color){
+	if(color === "nothing"){
+		for(let i = 0; i < notesMinimized.length; i++){
+			notesMinimized[i].classList.remove("filter-hidden");
+		}
+		return;
+	}
+
+	let txtValue,
+			lookup = {};
+
+	for(let i = 0; i<data.dataArray.length; i++){
+		lookup[data.dataArray[i].id] = data.dataArray[i];
+	}
+
+	for(let i = 0; i<notesMinimized.length; i++){
+
+		txtValue = lookup[notesMinimized[i].id].color;
+
+		if(txtValue.indexOf(color) > -1){
+			notesMinimized[i].classList.remove("filter-hidden");
+
+		}else{
+			notesMinimized[i].classList.add("filter-hidden");
+		}
 	}
 }
 
-
-
-
+function translateColor(color){
+	switch(color){
+		case "blue":
+			return "blau";
+		case "purple":
+			return "lila";
+		case "wine":
+			return "weinrot";
+		case "red":
+			return "rot";
+		case "green":
+			return "grün";
+		case "pink":
+			return "pink";
+		case "brown":
+			return "braun";
+		case "white":
+			return "weiß";
+		case "black":
+			return "schwarz";
+		default:
+			return "";
+	}
+}
 
 
 
