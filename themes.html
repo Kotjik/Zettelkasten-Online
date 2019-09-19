@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zettelkastenboiz</title>
+    <link rel="stylesheet" href="resources/css/style.css">
+</head>
+
+<body>
+    <h1 id="application-heading">Zettelkasten Online</h1>
+    <div id="side-menu">
+
+
+      <a href=".\index.html" class="menu-points"> Zettel </a>
+      <a href=".\sources.html" class="menu-points"> Quellen </a>
+      <a href=".\themes.html" class="menu-points"> Themen </a>
+      <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
+
+
+    </div>
+
+
+
+    <div id="theme-list">
+      <input type="text" id="searchInput" placeholder="Suche Thema" title="Gebe einen Suchbegriff ein"><br>
+
+
+    </div>
+
+    <div id="note-full-window">
+
+
+    </div>
+
+
+    <div id="note-editor" class="hidden">
+
+
+    </div>
+
+
+
+
+
+    </div>
+
+
+    <!-- Eigentlich wird type="module" benutzt, aber es wirft eine Fehlermeldung. Vielleicht weil noch nichts als Modul benutzt wird? -->
+    <script type="module" src="resources/js/themes.js"></script>
+    <!-- <script src="resources/js/index.js"></script> -->
+</body>
+
+</html>

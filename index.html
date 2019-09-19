@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zettelkastenboiz</title>
+    <link href="resources/css/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css">
+</head>
+
+<body>
+    <h1 id="application-heading">Zettelkasten Online</h1>
+    <div id="side-menu">
+
+        <a href=".\index.html" class="menu-points"> Zettel </a>
+        <a href=".\sources.html" class="menu-points"> Quellen </a>
+        <a href=".\themes.html" class="menu-points"> Themen </a>
+        <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
+
+    </div>
+
+    <div id="note-list">
+        <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein"><br>
+        <!-- <p style="float:left;">Nach Farbe filtern:</p><br> -->
+        <select id="sort-select">
+          <option selected value="last-updated">Zuletzt Bearbeitet(absteigend)</option>
+          <option value="created">Erstellt (absteigend)</option>
+          <option value="alphabetical">Alphabetisch (aufsteigend)</option>
+        </select>
+        <div id="button-new-note"> Neuer Zettel </div>
+
+        <!-- <div id="0" class="note-minimized hidden">
+            <div class="title-minimized"> Eintrag 1</div>
+            <div class="description-minimized">Beschreibung 1</div>
+            <div class="theme-minimized">Thema 1</div>
+            <div class="color-box-minimized blue"></div>
+            <div class="date-minimized">Zuletzt bearbeitet: 05.09.2019 14:11</div>
+        </div> -->
+
+    </div>
+
+    <div id="note-full-window">
+
+        <div id="" class="note-full hidden">
+            <div class="title-full"> Titel </div>
+            <div class="description-full"> Beschreibung </div>
+            <div class="source-full"> Quelle </div>
+            <div class="theme-full"> Thema </div>
+            <div class="color-box-full blue"></div>
+            <div class="last-updated-full"> Zuletzt geändert: DD.MM.YY HH:MM</div>
+            <div class="creation-full"> Erstellt: DD.MM.YY HH:MM </div>
+
+            <div class="close-button"> &times; </div>
+            <div class="edit-button"> Edit </div>
+        </div>
+
+        <div id="note-editor" class="note-editor hidden">
+            <h2 class="note-editor-heading"></h2>
+            <input id="title-input" type="text" name="title" placeholder="Titel">
+            <br>
+            <!-- <input id="description-input" type="text" name="description" placeholder="Beschreibung"><br> -->
+            <div id="description-input"></div>
+            <input id="source-input" type="text" name="source" placeholder="Quelle">
+            <br>
+            <input id="theme-input" type="text" name="theme" placeholder="Thema">
+            <p>Farbe:</p>
+            <div id="blue" class="color-box blue highlighted" title="blau"></div>
+            <div id="purple" class="color-box purple" title="lila"></div>
+            <div id="wine" class="color-box wine" title="weinrot"></div>
+            <div id="red" class="color-box red" title="rot"></div>
+            <div id="green" class="color-box green" title="grün"></div>
+            <div id="pink" class="color-box pink" title="pink"></div>
+            <div id="brown" class="color-box brown" title="braun"></div>
+            <div id="white" class="color-box white" title="weiß"></div>
+            <div id="black" class="color-box black" title="schwarz"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <button id="button-new-note-save" type="button">Speichern</button>
+            <button id="button-new-note-delete" type="button">Löschen</button>
+            <button id="button-new-note-cancel" type="button">Abbrechen</button>
+            <div id="confirmation-deletion" class="hidden">
+                Wollen Sie diesen Zettel unwiederruflich löschen?
+                <button id="button-delete-confirm">Ja</button>
+                <button id="button-delete-cancel">Abbrechen</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Eigentlich wird type="module" benutzt, aber es wirft eine Fehlermeldung. Vielleicht weil noch nichts als Modul benutzt wird? -->
+    <script type="module" src="resources/js/index.js"></script>
+    <!-- <script src="resources/js/index.js"></script> -->
+    <script src="resources/js/quill.js"></script>
+</body>
+
+</html>

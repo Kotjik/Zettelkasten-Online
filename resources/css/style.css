@@ -1,0 +1,333 @@
+html {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #FAFAFA;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #000;
+    height: 100%;
+}
+
+body div {
+    padding: 1vw;
+}
+
+#application-heading {
+    width: 98vw;
+    margin: 0;
+    padding: 1vw;
+    background-color: #333;
+    border-style: solid;
+    border-width: 0 0 0.25vh 0;
+    border-color: #FFF;
+    color: #FAFAFA;
+}
+
+.hidden{
+  display: none;
+}
+
+#side-menu{
+  float: left;
+  width: 15vw;
+  height: 80%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #400;
+  box-sizing: border-box;
+}
+
+#note-list{
+  float: left;
+  width: 30vw;
+  height: 80%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #0f0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#source-list{
+  float: left;
+  width: 30vw;
+  height: 80%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #0f0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#theme-list{
+  float: left;
+  width: 30vw;
+  height: 80%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #0f0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#note-full-window{
+  position: relative;
+  float: left;
+  width: 45vw;
+  height:80%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #00f;
+  box-sizing: border-box;
+  overflow: auto;
+  /* display: inline-block; */
+}
+
+.menu-points:link, .menu-points:visited{
+  background-color: #f44336;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 2%;
+}
+
+.menu-points:hover, .menu-points:active{
+  background-color: red;
+}
+
+
+#button-new-note{
+  background-color: purple;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+.note-minimized{
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 2%;
+  overflow: auto;
+  cursor: pointer;
+}
+#note-list>.note-minimized:hover{
+  border: 5px solid yellow;
+}
+.title-minimized{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.description-minimized{
+  position:relative;
+  padding: 0 0 0 0;
+  max-height: 190px;
+  height:auto;
+  overflow-wrap: break-word;
+}
+/* .description-minimized > *{
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80%;
+  display: block;
+  overflow: hidden;
+} */
+.theme-minimized-title{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.color-box-minimized{
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+}
+.date-minimized{
+  position: relative;
+  bottom: 0px;
+  padding: 0 0 0 0;
+  color: #555;
+  font-size: 12px;
+}
+
+#note-editor{
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 2%;
+  overflow: auto;
+}
+
+
+.note-full{
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 2%;
+  /* height: 90%; */
+  /* overflow: auto; */
+}
+.title-full{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.description-full{
+  overflow-wrap: break-word;
+  border: 2px solid rgba(0, 0, 0, .8);
+  position:relative;
+  padding: 0 0 0 0;
+}
+.source-full{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.source-full > a{
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.theme-full{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.theme-full > a{
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.color-box-full{
+  position:relative;
+  width: 20px;
+  height: 20px;
+}
+.last-updated-full{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.creation-full{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.close-button{
+  border: 0px solid rgba(0, 0, 0, .2);
+  /* width: 20px;
+  height: 20px; */
+  cursor: pointer;
+  font-size: 30px;
+  padding: 0 0 0 0;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  opacity: 0.3;
+}
+.close-button:hover {
+  opacity: 1;
+  color: red;
+}
+.edit-button{
+  background-color: #2a6bcc;
+  cursor: pointer;
+  display: inline-block;
+  position:relative;
+  padding: 0 0 0 0;
+  border: 2px solid rgba(0, 0, 0, .8);
+  cursor: pointer;
+}
+
+
+.color-box{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  cursor: pointer;
+  position: relative;
+}
+.blue {
+  background: #13b4ff;
+}
+.purple {
+  background: #ab3fdd;
+}
+.wine {
+  background: #ae163e;
+}
+.red {
+  background: #FF0000;
+}
+.green {
+  background: #008000;
+}
+.pink {
+  background: #FF1493;
+}
+.brown {
+  background: #8B4513;
+}
+.white {
+  background: #fff;
+}
+.black {
+  background: #000;
+}
+.highlighted{
+  border: 5px solid yellow;
+}
+
+#confirmation-deletion{
+  border: 3px solid rgba(255, 0, 0, 1);
+}
+
+.source-minimized{
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 2%;
+  overflow: auto;
+}
+.source-minimized:hover{
+  border: 5px solid yellow;
+  cursor: pointer;
+}
+.source-minimized-title{
+  position:relative;
+  padding: 0 0 0 0;
+}
+.numberOfNotes-minimized{
+  position:relative;
+  padding: 0 0 0 0;
+}
+
+.theme-minimized{
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 2%;
+  overflow: auto;
+}
+#theme-list>.theme-minimized:hover{
+  border: 5px solid yellow;
+  cursor: pointer;
+}
+.theme-minimized-title{
+  position:relative;
+  padding: 0 0 0 0;
+}
+button{
+  cursor: pointer;
+}
+
+#description-input{
+  background-color: white;
+}
+
+#searchInput{
+  background-repeat: no-repeat;
+  width: 98%;
+  font-size: 16px;
+  padding: 12px 0px 12px 2%;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
