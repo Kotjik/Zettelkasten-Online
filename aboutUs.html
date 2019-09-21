@@ -4,68 +4,70 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zettelkastenboiz</title>
+    <title>Zettelkasten - über uns</title>
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
 
 <body>
-    <h1 id="application-heading">Zettelkasten Online</h1>
-    <div id="side-menu">
+    <div class="grid-container-aboutUs">
+        <div id="application-heading">
+            <h1>Zettelkasten Online</h1></div>
+        <div id="side-menu">
 
+            <a href=".\index.html" class="menu-points"> Zettel </a>
+            <a href=".\sources.html" class="menu-points"> Quellen </a>
+            <a href=".\themes.html" class="menu-points"> Themen </a>
+            <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
 
-      <a href=".\index.html" class="menu-points"> Zettel </a>
-      <a href=".\sources.html" class="menu-points"> Quellen </a>
-      <a href=".\themes.html" class="menu-points"> Themen </a>
-      <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
-
-
-    </div>
-
-
-
-    <div id="aboutus_page">
-      <div id="team">
-        <div class="team_title">Wer wir sind</div>
-        <table class="member">
-          <tr>
-            <th class="Konstantin">
-              <figure><img src="" alt="">
-                <figcaption>
-                  <div class="member_name">Konstantin Kulik</div>
-                  <div class="member_description">Description...</div>
-                  <a href = "mailto: konstantin.kulik@student.ur.de">Schreib mir!</a>
-                </figcaption>
-              </figure>
-            </th>
-            <th class="Dung">
-              <figure><img src="" alt="">
-                <figcaption>
-                  <div class="member_name">Viet Dung Le</div>
-                  <div class="member_descrition">Description...</div>
-                  <a href = "mailto: viet-dung.le@student.ur.de">Schreib mir!</a>
-                </figcaption>
-              </figure>
-            </th>
-          </tr>
-        </table>
         </div>
 
-        <div id="product">
-          <div class"product_title">Wem wir helfen wollen</div>
-          <div class"prouct_presentation">Description...<div>
-      </div>
+        <div id="aboutus_page" class="aboutUs">
+            <div id="team">
+                <div class="team_title">Wer wir sind</div>
+                <table class="member">
+                    <tr>
+                        <th class="Konstantin">
+                            <figure><img src="" alt="">
+                                <figcaption>
+                                    <div class="member_name">Konstantin Kulik</div>
+                                    <div class="member_description">Description...</div>
+                                    <a href="mailto: konstantin.kulik@student.ur.de">Schreib mir!</a>
+                                </figcaption>
+                            </figure>
+                        </th>
+                        <th class="Dung">
+                            <figure><img src="" alt="">
+                                <figcaption>
+                                    <div class="member_name">Viet Dung Le</div>
+                                    <div class="member_description">Description...</div>
+                                    <a href="mailto: viet-dung.le@student.ur.de">Schreib mir!</a>
+                                </figcaption>
+                            </figure>
+                        </th>
+                    </tr>
+                </table>
+            </div>
 
-        <div id="institution">
-          <div class"institution_title">Wem wir zugehören</div>
-          <div class"institution_name">Universität Regensburg - Multimedia Engineering<div>
-          <div class"institution_description">Description...</div>
-          <div class"lecturer">Kursleiter Alexander Bazo</div>
+            <div id="product">
+                <div class "product_title">Wem wir helfen wollen</div>
+                <div class "prouct_presentation">Description...
+                    <div>Unsere Anwendung soll eine digitale Variante des Zettelkasten nach Luhmann darstellen. Unser Ziel ist es dabei, sowohl Forschende als auch Studierende in einer Zeit, in der auch die Wissenschaft eine digitale Transformation erfährt, zu unterstützen. Eine effiziente und effektive Nutzung digitaler Hilfsmittel bei Forschungsarbeiten erfordern dementsprechende Programme, die den Nutzer unter die Arme greifen, literarische und wissenschaftliche Arbeiten zentral zu verwalten. Unser Zettelkasten ermöglicht eine intuitive Orgnisationsmöglichkeit verschiedener Werke mit einer Liste an brauchbaren Features wie dem Hervorben wichtiger Texte, dem Sortieren verschiedener Quellen.
+                    </div>
+
+                    <div id="institution">
+                        <div class "institution_title">Wem wir zugehören</div>
+                        <div class "institution_name">Universität Regensburg - Multimedia Engineering
+                            <div>
+                                <div class "institution_description">Description...</div>
+                                <div class "lecturer">Kursleiter Alexander Bazo</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-
-
 
     <!-- Eigentlich wird type="module" benutzt, aber es wirft eine Fehlermeldung. Vielleicht weil noch nichts als Modul benutzt wird? -->
     <script type="module" src="resources/js/sources.js"></script>

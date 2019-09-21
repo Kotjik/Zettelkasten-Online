@@ -5,7 +5,7 @@ class MinimizedNode {
   constructor(id, title, description, theme, color, lastUpdated) {
     this.id = id;
     this.title = title;
-    this.description = shortenDescription(description);
+    this.description = shortenString(description);
     this.theme = theme;
     this.color = color;
     this.lastUpdated = lastUpdated;
@@ -22,10 +22,10 @@ class MinimizedNode {
 
 }
 
-function shortenDescription(description){
-  let shortDescription = description;
-  if(description.length > 100){
-    shortDescription = description.substring(0, 100) + "...";
+function shortenString(string){
+  let shortDescription = string;
+  if(string.length > 100){
+    shortDescription = string.substring(0, 100) + "...";
   }
   return shortDescription;
 }

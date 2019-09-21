@@ -20,17 +20,25 @@ class FullNote {
                 this.theme, this.color, this.lastUpdated, this.creationDate);
     return newFullNote;
   }
+
+  closeFullNote(){
+    if(document.getElementById("note-full")){
+      document.getElementById("note-full").remove();
+    }else{
+      return;
+    }
+  }
 }
 
 function getInnerHTML(title, description, source, theme, color, lastUpdated, creationDate){
   return "<div class='title-full'>" + title + `</div>
   <div class="description-full">` + description + `</div>
   <div class="source-full">
-    <b>Quelle</b>: <a href=".\\sources.html?source=` + source + "\">"
+    Quelle: <a href=".\\sources.html?source=` + source + "\">"
     + source + `</a>
   </div>
   <div class="theme-full">
-    <b>Thema</b>: <a href=".\\themes.html?theme=` + theme + "\">"
+    Thema: <a href=".\\themes.html?theme=` + theme + "\">"
     + theme + `</a>
   </div>
   <div class='color-box-full ` + color + "' title='"

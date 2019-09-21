@@ -1,7 +1,8 @@
 /* eslint-env browser */
 
 import Data from "./data.js";
-import MinimizedNode from "./minimizedNote.js";
+import MinimizedNote from "./minimizedNote.js";
+import FullNote from "./fullNote.js";
 
 function init() {
 	//
@@ -89,16 +90,46 @@ function showNotes(theme, numberOfNotes){
 
   for(let i = 0; i<numberOfNotes; i++){
 
-    let currentNote = notesWithThisThemes[i],
-    newMinimizedNote =new MinimizedNode(currentNote.id, currentNote. title,
-      currentNote.description, currentNote.theme, currentNote.color,
-      currentNote.lastUpdated),
-    newMinimizedNoteHTMLElement = newMinimizedNote.getHTMLElement();
-
-    noteFullWindow.appendChild(newMinimizedNoteHTMLElement);
+    let currentNote = notesWithThisThemes[i];
+    createNewMinimizedNote(currentNote);
   }
 
   themesMinimized = document.getElementsByClassName("theme-minimized");
+}
+
+function createNewMinimizedNote(note){
+  let newMinimizedNote = new MinimizedNote(note.id, note. title,
+      note.description, note.theme, note.color,
+      note.lastUpdated),
+  newMinimizedNoteHTMLElement = newMinimizedNote.getHTMLElement();
+
+  noteFullWindow.appendChild(newMinimizedNoteHTMLElement);
+
+  newMinimizedNoteHTMLElement.addEventListener("click", function(){
+    openFullNote(note.id);
+  });
+}
+
+function openFullNote(id){
+  let minimizedNotes = document.getElementsByClassName("note-minimized"),
+      currentNote = data.getNoteById(id),
+      fullNote = new FullNote(currentNote.title, currentNote.description,
+                  currentNote.source, currentNote.theme, currentNote.color,
+                  currentNote.lastUpdated, currentNote.creationDate),
+      fullNoteHTMLElement = fullNote.getHTMLElement();
+
+  for(let i = 0; i<minimizedNotes.length; i++){
+    minimizedNotes[i].classList.add("hidden");
+  }
+  noteFullWindow.appendChild(fullNoteHTMLElement);
+
+  document.querySelector(".close-button").addEventListener("click", function(){
+    fullNote.closeFullNote();
+    for(let i = 0; i<minimizedNotes.length; i++){
+      minimizedNotes[i].classList.remove("hidden");
+    }
+  });
+  document.querySelector(".edit-button").remove();
 }
 
 function loadAllThemesToDOM(){

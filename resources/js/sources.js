@@ -124,11 +124,15 @@ function openFullNote(id){
     minimizedNotes[i].classList.add("hidden");
   }
   noteFullWindow.appendChild(fullNoteHTMLElement);
+
+  document.querySelector(".close-button").addEventListener("click", function(){
+    fullNote.closeFullNote();
+    for(let i = 0; i<minimizedNotes.length; i++){
+      minimizedNotes[i].classList.remove("hidden");
+    }
+  });
+  document.querySelector(".edit-button").remove();
 }
-
-
-
-
 
 function loadAllSourcesToDOM(){
   for(let i = 0; i < uniqueSources.length; i++){
