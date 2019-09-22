@@ -11,13 +11,14 @@ function init() {
     searchInput.value = "";
     loadAllNotesToDOM();
     sortNotes();
-
+    checkURL();
 }
 
 // declarations
 let data = new Data(),
     currentNoteId = 0,
-    instruments = document.getElementById("instruments"),
+    instruments = document.querySelector(".instruments"),
+    notesContainer = document.querySelector(".notes-container"),
     buttonNewNote = document.getElementById("button-new-note"),
     buttonNewNoteCancel = document.getElementById("button-new-note-cancel"),
     buttonNewNoteSave = document.getElementById("button-new-note-save"),
@@ -109,6 +110,11 @@ buttonNewNote.addEventListener("click", function() {
     document.getElementById("theme-input").value = "";
     document.querySelector(".ql-editor").innerHTML = "";
     document.querySelector(".note-editor-heading").innerHTML = "Neuen Zettel anlegen";
+    for (let i = 0; i < colorBoxes.length; i++) {
+        colorBoxes[i].classList.remove("highlighted");
+    }
+    colorBoxes[0].classList.add("highlighted");
+
     buttonNewNoteDelete.classList.add("hidden");
     openNoteEditor();
 });
@@ -145,7 +151,6 @@ function closeFullNote() {
 
 function openNoteEditor() {
 
-    noteFull.classList.add("hidden");
     newNoteEditor.classList.remove("hidden");
 }
 
@@ -164,11 +169,11 @@ function closeNewNoteEditor() {
 }
 
 function saveNote() {
-    let titleInput = document.getElementById("title-input").value,
+    let titleInput = document.getElementById("title-input").value.trim(),
         // descriptionInput = document.getElementById("description-input").value,
         descriptionInput = document.querySelector(".ql-editor").innerHTML,
-        sourceInput = document.getElementById("source-input").value,
-        themeInput = document.getElementById("theme-input").value,
+        sourceInput = document.getElementById("source-input").value.trim(),
+        themeInput = document.getElementById("theme-input").value.trim(),
         colorInput = document.querySelector(".color-box.highlighted").id,
         newNote, currentNote;
 
@@ -195,12 +200,12 @@ function saveNote() {
 
 function createNewMinimizedNote(note) {
 
-    let newMinimizedNote = new MinimizedNote(note.id, note.title, note.description,
+    let newMinimizedNote = new MinimizedNote(note.id, note.title, note.source,
             note.theme, note.color, note.lastUpdated),
         newMinimizedNoteHTMLElement = newMinimizedNote.getHTMLElement();
 
     // buttonNewNote.parentNode.insertBefore(newMinimizedNoteHTMLElement, buttonNewNote.nextSibling);
-    noteList.appendChild(newMinimizedNoteHTMLElement);
+    notesContainer.appendChild(newMinimizedNoteHTMLElement);
 
     newMinimizedNoteHTMLElement.addEventListener("click", function() {
         openFullNote(note.id);
@@ -252,9 +257,6 @@ function editNote(id) {
 
 }
 
-
-
-
 // localStorage -----------------------------------------------
 function confirmDeletion() {
     confirmationDeletionWindow.classList.remove("hidden");
@@ -265,8 +267,8 @@ function deleteNote(id) {
 
     data.deleteNoteFromStorage(id);
 
-    while (instruments.nextSibling) {
-        noteList.removeChild(instruments.nextSibling);
+    while (notesContainer.firstChild) {
+        notesContainer.removeChild(notesContainer.firstChild);
     }
 
     loadAllNotesToDOM();
@@ -314,8 +316,8 @@ function searchNotes() {
 
 function sortNotes() {
     data = new Data();
-    while (instruments.nextSibling) {
-        noteList.removeChild(instruments.nextSibling);
+    while (notesContainer.firstChild) {
+        notesContainer.removeChild(notesContainer.firstChild);
     }
     switch (sortSelect.value) {
         case "last-updated-asc":
@@ -458,6 +460,26 @@ function translateColor(color) {
     }
 }
 
+//
+// URL
+//
+function getURLVariable(variable){
+  let query = window.location.search.substring(1),
+      vars = query.split("&");
+  for(let i=0;i<vars.length;i++) {
+    let pair = vars[i].split("=");
+    if(pair[0] === variable){return pair[1];}
+  }
+  return(false);
+}
+
+function checkURL(){
+  if(getURLVariable("id")){
+    document.getElementById(getURLVariable("id")).click();
+    document.querySelector(".edit-button").click();
+    document.querySelector(".note-minimized.highlighted").scrollIntoView({block: "start", behavior: "smooth"});
+  }
+}
 
 
 

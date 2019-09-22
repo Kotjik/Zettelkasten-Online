@@ -2,11 +2,11 @@
 
 class MinimizedNode {
 
-  constructor(id, title, description, theme, color, lastUpdated) {
+  constructor(id, title, source, theme, color, lastUpdated) {
     this.id = id;
-    this.title = title;
-    this.description = shortenString(description);
-    this.theme = theme;
+    this.title = shortenString(title);
+    this.source = shortenString(source);
+    this.theme = shortenString(theme);
     this.color = color;
     this.lastUpdated = lastUpdated;
   }
@@ -15,7 +15,7 @@ class MinimizedNode {
     let newMinimizedNote = document.createElement("div");
     newMinimizedNote.classList.add("note-minimized");
     newMinimizedNote.setAttribute("id", this.id);
-    newMinimizedNote.innerHTML = getInnerHTML(this.title, this.description,
+    newMinimizedNote.innerHTML = getInnerHTML(this.title, this.source,
                                   this.theme, this.color, this.lastUpdated);
     return newMinimizedNote;
   }
@@ -30,10 +30,10 @@ function shortenString(string){
   return shortDescription;
 }
 
-function getInnerHTML(title, description, theme, color, lastUpdated){
+function getInnerHTML(title, source, theme, color, lastUpdated){
   return "<div class='title-minimized'>" + title + `</div>
-  <div class="description-minimized">` + description + `</div>
-  <div class="theme-minimized-title">` + theme + `</div>
+  <div class="source-minimized">` + source + `</div>
+  <div class="theme-minimized">` + theme + `</div>
   <div class='color-box-minimized ` + color + "' title='" + translateColor(color) + `'></div>
   <div class='date-minimized'>Zuletzt bearbeitet: ` + lastUpdated + "</div>";
 }

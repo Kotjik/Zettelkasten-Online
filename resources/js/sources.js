@@ -18,8 +18,9 @@ let data = new Data(),
     allSources = [],
     uniqueSources = [],
     searchInput = document.querySelector("#searchInput"),
-    sourcesMinimized = document.getElementsByClassName("source-minimized"),
-    sortSelect = document.querySelector("#sort-select");
+    sourceEntries = document.getElementsByClassName("source-entry"),
+    sortSelect = document.querySelector("#sort-select"),
+    notesContainer = document.querySelector(".notes-container");
 
 for(let i = 0; i < data.dataArray.length; i++){
   allSources.push(data.dataArray[i].source);
@@ -49,25 +50,25 @@ function countDuplicates(array, element){
 
 function createNewMinimizedSource(source, numberOfNotes){
   let newMinimizedSource = document.createElement("div");
-	newMinimizedSource.classList.add("source-minimized");
+	newMinimizedSource.classList.add("source-entry");
 	newMinimizedSource.setAttribute("id", source);
 
   if(source){
     newMinimizedSource.innerHTML =
-		"<div class='theme-minimized-title'>" + source + `</div>
+		"<div class='theme-minimized'>" + source + `</div>
 		<div class="numberOfNotes-minimized"> Notizenanzahl:` + numberOfNotes + "</div>";
   }else{
     newMinimizedSource.innerHTML =
-    `<div class='theme-minimized-title'>[Keine Quelle angegeben]</div>
+    `<div class='theme-minimized'>[Keine Quelle angegeben]</div>
   	<div class="numberOfNotes-minimized"> Notizenanzahl:` + numberOfNotes + "</div>";
   }
 
-	sourceList.appendChild(newMinimizedSource);
+	notesContainer.appendChild(newMinimizedSource);
 
 	newMinimizedSource.addEventListener("click", function(){
 		showNotes(source, numberOfNotes);
 
-    let minimizedSources = document.getElementsByClassName("source-minimized");
+    let minimizedSources = document.getElementsByClassName("source-entry");
     for(let i = 0; i < minimizedSources.length; i++){
       minimizedSources[i].classList.remove("highlighted");
     }
@@ -95,12 +96,12 @@ function showNotes(source, numberOfNotes){
 
   }
 
-  sourcesMinimized = document.getElementsByClassName("source-minimized");
+  sourceEntries = document.getElementsByClassName("source-entry");
 }
 
 function createNewMinimizedNote(note){
-  let newMinimizedNote = new MinimizedNote(note.id, note. title,
-      note.description, note.theme, note.color,
+  let newMinimizedNote = new MinimizedNote(note.id, note.title,
+      note.source, note.theme, note.color,
       note.lastUpdated),
   newMinimizedNoteHTMLElement = newMinimizedNote.getHTMLElement();
 
@@ -131,7 +132,9 @@ function openFullNote(id){
       minimizedNotes[i].classList.remove("hidden");
     }
   });
-  document.querySelector(".edit-button").remove();
+  document.querySelector(".edit-button").addEventListener("click", function(){
+    window.location = ".\\index.html?id=" + encodeURIComponent(id);
+  });
 }
 
 function loadAllSourcesToDOM(){
@@ -155,15 +158,16 @@ function getURLVariable(variable){
 
 function checkURL(){
   if(getURLVariable("source")){
-    searchInput.value = getURLVariable("source");
+    searchInput.value = decodeURIComponent(getURLVariable("source"));
     searchSources();
-    for(let i = 0; i < sourcesMinimized.length; i++){
-      if(window.getComputedStyle(sourcesMinimized[i]).display !== "none"){
-        sourcesMinimized[i].click();
+    for(let i = 0; i < sourceEntries.length; i++){
+      if(window.getComputedStyle(sourceEntries[i]).display !== "none"){
+        sourceEntries[i].click();
       }
     }
     searchInput.value = "";
     searchSources();
+    document.querySelector(".source-entry.highlighted").scrollIntoView({block: "start", behavior: "smooth"});
   }
 }
 
@@ -181,20 +185,20 @@ function searchSources(){
 
 	filter = searchInput.value.toUpperCase();
 
-	for(let i = 0; i<sourcesMinimized.length; i++){
-		txtValue = (sourcesMinimized[i].firstChild.innerText || sourcesMinimized[i].firstChild.textContent);
+	for(let i = 0; i<sourceEntries.length; i++){
+		txtValue = (sourceEntries[i].firstChild.innerText || sourceEntries[i].firstChild.textContent);
 
 		if(txtValue.toUpperCase().indexOf(filter) > -1){
-      sourcesMinimized[i].classList.remove("search-hidden");
+      sourceEntries[i].classList.remove("search-hidden");
 		}else{
-      sourcesMinimized[i].classList.add("search-hidden");
+      sourceEntries[i].classList.add("search-hidden");
 		}
 	}
 }
 
 function sortNotes(){
-	while(sortSelect.nextSibling){
-		sourceList.removeChild(sortSelect.nextSibling);
+	while(notesContainer.firstChild){
+		notesContainer.removeChild(notesContainer.firstChild);
 	}
 	switch(sortSelect.value){
 		case "notesnumber-desc":

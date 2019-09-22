@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
 
-<body>
+<body id="body">
   <div class="grid-container">
-    <div id="application-heading"><h1>Zettelkasten Online</h1></div>
+    <div id="application-heading"><h1>Zettelkasten Online - Zettel</h1></div>
     <div id="side-menu">
 
         <a href=".\index.html" class="menu-points"> Zettel </a>
@@ -22,10 +22,10 @@
     </div>
     <div id="note-list">
         <!-- <p style="float:left;">Nach Farbe filtern:</p><br> -->
-        <table id="instruments">
+      <div class="instruments">
+        <table>
           <tr>
-            <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein"><br>
-
+            <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein">
           </tr>
           <tr>
             <td>
@@ -60,24 +60,13 @@
 
         </tr>
         </table>
-        <!-- <div id="button-new-note"> Neuer Zettel </div> -->
-
-
-        <!-- <div id="0" class="note-minimized hidden">
-            <div class="title-minimized"> Eintrag 1</div>
-            <div class="description-minimized">Beschreibung 1</div>
-            <div class="theme-minimized">Thema 1</div>
-            <div class="color-box-minimized blue"></div>
-            <div class="date-minimized">Zuletzt bearbeitet: 05.09.2019 14:11</div>
-        </div> -->
+      </div>
+      <div class="notes-container">
+      </div>
 
     </div>
 
     <div id="note-full-window">
-
-        <div id="" class="note-full hidden">
-
-        </div>
 
         <div id="note-editor" class="note-editor hidden">
             <h2 class="note-editor-heading"></h2>

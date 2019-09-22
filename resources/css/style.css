@@ -2,12 +2,11 @@ html {
     margin: 0;
     height: 100%;
 }
-
 body {
     margin: 0;
-    background: #5085A5;
+    background: #2C3E50;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    color: #F7F9FB;
+    color: #ECF0F1;
     height: 100%;
     display: flex;
 }
@@ -24,19 +23,19 @@ body div {
   width: 100%;
   display: grid;
   grid-template-columns: 0.5fr 1fr 1.5fr;
-  grid-template-rows: 0.2fr 1.4fr;
+  grid-template-rows: 0.1fr 1.5fr;
   grid-template-areas: "header header header" "menu list full";
-  grid-column-gap: 50px;
+  grid-column-gap: 2%;
   padding: 0;
 }
 
 #application-heading {
     grid-area: header;
-    background-color: #31708E;
+    color: #ECF0F1;
     border-style: solid;
     border-width: 0 0 0.25vh 0;
     border-color: #FFF;
-    color: #F7F9FB;
+    background-color: #2980B9;
 }
 
 #side-menu{
@@ -46,7 +45,7 @@ body div {
   height: 100%;
 
   padding: 20px;
-  background: #8FC1E3;
+  background: #3498DB;
   box-sizing: border-box;
 }
 
@@ -55,9 +54,12 @@ body div {
   float: left;
   height: 100%;
   padding: 20px;
-  background: #8FC1E3;
+  background: #3498DB;
   box-sizing: border-box;
-  overflow: auto;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  /* overflow: auto; */
 }
 
 #note-full-window{
@@ -66,7 +68,7 @@ body div {
   float: left;
   height:100%;
   padding: 20px;
-  background: #8FC1E3;
+  background: #3498DB;
   box-sizing: border-box;
   overflow: auto;
   /* display: inline-block; */
@@ -77,9 +79,11 @@ body div {
   float: left;
   height: 100%;
   padding: 20px;
-  background: #8FC1E3;
+  background: #3498DB;
   box-sizing: border-box;
-  overflow: auto;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 #theme-list{
@@ -87,9 +91,11 @@ body div {
   float: left;
   height: 100%;
   padding: 20px;
-  background: #8FC1E3;
+  background: #3498DB;
   box-sizing: border-box;
-  overflow: auto;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 .grid-container-aboutUs{
@@ -106,7 +112,7 @@ body div {
 }
 
 .menu-points:link, .menu-points:visited{
-  background-color: #687864;
+  background-color: #2C3E50;
   color: white;
   padding: 15px 25px;
   text-align: center;
@@ -116,26 +122,30 @@ body div {
 }
 
 .menu-points:hover, .menu-points:active{
-  background-color: #aeb9ac;
+  background-color: #1b2d40;
 }
 
 
 #button-new-note{
-  background-color: #5085A5;
-  margin-bottom: 2%;
-  cursor: pointer;
-  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  background-color: #E74C3C; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 #button-new-note:hover, button-new-note:active{
-  background-color: #6197B7;
+  background-color: #d63b2b;
 }
 
 .note-minimized{
   color: black;
   position: relative;
-  background-color: #eee;
+  background-color: #ECF0F1;
   margin-bottom: 2%;
   overflow: auto;
   cursor: pointer;
@@ -163,7 +173,7 @@ body div {
   max-height: 190px;
   height:auto;
   overflow-wrap: break-word;
-  border: 1px solid rgba(0, 0, 0, .8);
+  border: 1px solid #2C3E50;
 
 }
 /* .description-minimized > *{
@@ -206,7 +216,7 @@ body div {
 #note-editor{
   color: black;
   position: relative;
-  background-color: #eee;
+  background-color: #ECF0F1;
   margin-bottom: 2%;
   overflow: auto;
 }
@@ -215,7 +225,6 @@ body div {
 .note-full{
   position: relative;
   background-color: #eee;
-  margin-bottom: 2%;
   /* height: 90%; */
   /* overflow: auto; */
   color: black;
@@ -243,8 +252,7 @@ body div {
 .source-full > a{
   cursor: pointer;
   text-decoration: none;
-  color: #6669E8;
-  font-weight: bold;
+  color: #2C3E50;
 }
 .theme-full{
   position:relative;
@@ -254,7 +262,7 @@ body div {
   cursor: pointer;
   text-decoration: none;
   font-weight: bold;
-  color: #9470FF;
+  color: #3498DB;
 }
 .color-box-full{
   position:relative;
@@ -286,13 +294,25 @@ body div {
   color: red;
 }
 .edit-button{
-  background-color: #2a6bcc;
+  color: #ECF0F1;
   cursor: pointer;
   display: inline-block;
   position:relative;
-  padding: 0 0 0 0;
-  border: 2px solid rgba(0, 0, 0, .8);
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom:10px;
+
   cursor: pointer;
+  text-align: center;
+  background-color: #E74C3C;
+  margin-bottom: 2%;
+  cursor: pointer;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.edit-button:hover, .edit-button:active{
+  background-color: #d63b2b;
 }
 
 
@@ -351,9 +371,10 @@ body div {
 
 #confirmation-deletion{
   border: 3px solid rgba(255, 0, 0, 1);
+  background-color: #FFBBC3;
 }
 
-.source-minimized{
+.source-entry{
   color: black;
   position: relative;
   background-color: #eee;
@@ -363,26 +384,28 @@ body div {
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-.source-minimized:hover{
-  border: 5px solid yellow;
+.source-entry:hover{
+  background-color: #fff;
   cursor: pointer;
 }
-.source-minimized-title{
+.source-minimized{
   position:relative;
   padding: 0 0 0 0;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0px;
   word-spacing: 0px;
-  color: #000000;
-  font-weight: 700;
+  color: #2C3E50;
 }
 .numberOfNotes-minimized{
-  position:relative;
+  position: relative;
+  bottom: 0px;
   padding: 0 0 0 0;
+  color: #555;
+  font-size: 12px;
 }
 
-.theme-minimized{
+.theme-entry{
   color: black;
   position: relative;
   background-color: #eee;
@@ -392,13 +415,14 @@ body div {
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-#theme-list>.theme-minimized:hover{
-  border: 5px solid yellow;
+.theme-entry:hover{
+  background-color: #fff;
   cursor: pointer;
 }
-.theme-minimized-title{
+.theme-minimized{
   position:relative;
   padding: 0 0 0 0;
+  color: #3498DB;
 }
 button{
   cursor: pointer;
@@ -455,4 +479,97 @@ select {
   margin-bottom: 0.2vw;
   margin-left: 0;
   margin-right: 0;
+}
+
+.instruments{
+  padding: 0;
+}
+.notes-container{
+  padding: 0;
+  height: 10px;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+#aboutus_page{
+  overflow: auto;
+}
+.member_image{
+  height: 400px;
+}
+
+#button-new-note-save{
+  background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#button-new-note-save:hover, #button-new-note-save:active{
+  background-color: #3b9e40;
+}
+#button-new-note-cancel{
+  background-color: #555555; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#button-new-note-cancel:hover, #button-new-note-cancel:active{
+  background-color: #444444;
+}
+#button-new-note-delete{
+  background-color: #f44336; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#button-new-note-delete:hover, #button-new-note-delete:active{
+  background-color: #e33225;
+}
+#button-delete-confirm{
+  background-color: #f44336; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#button-delete-confirm:hover, #button-delete-confirm:active{
+  background-color: #e33225;
+}
+#button-delete-cancel{
+  background-color: #555555; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#button-delete-cancel:hover, #button-delete-cancel:active{
+  background-color: #444444;
 }

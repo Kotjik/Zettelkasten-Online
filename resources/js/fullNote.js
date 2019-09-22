@@ -34,11 +34,11 @@ function getInnerHTML(title, description, source, theme, color, lastUpdated, cre
   return "<div class='title-full'>" + title + `</div>
   <div class="description-full">` + description + `</div>
   <div class="source-full">
-    Quelle: <a href=".\\sources.html?source=` + source + "\">"
+    Quelle: <a href=".\\sources.html?source=` + encodeURIComponent(source) + "\">"
     + source + `</a>
   </div>
   <div class="theme-full">
-    Thema: <a href=".\\themes.html?theme=` + theme + "\">"
+    Thema: <a href=".\\themes.html?theme=` + encodeURIComponent(theme) + "\">"
     + theme + `</a>
   </div>
   <div class='color-box-full ` + color + "' title='"
@@ -46,7 +46,7 @@ function getInnerHTML(title, description, source, theme, color, lastUpdated, cre
   <div class='last-updated-full'>Zuletzt bearbeitet: ` + lastUpdated + `</div>
   <div class="creation-full">Erstellt: ` + creationDate + `</div>
   <div class="close-button">×</div>
-  <div class="edit-button">Edit</div>`;
+  <div class="edit-button">Zettel bearbeiten</div>`;
 }
 
 function translateColor(color){

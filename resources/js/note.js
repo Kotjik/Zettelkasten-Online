@@ -4,9 +4,9 @@ class Note {
 
   constructor(title, description, source, theme, color, creationDate, lastUpdated) {
     this.title = title || "[Kein Titel]";
-    this.description = description;
-    this.source = source;
-    this.theme = theme;
+    this.description = description || "[Keine Beschreibung]";
+    this.source = source || "[Keine Quelle]";
+    this.theme = theme || "[Kein Thema]";
     this.color = color || "blue";
     this.id = Date.now().toString();
     this.creationDate = creationDate || getDate();

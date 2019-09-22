@@ -17,9 +17,10 @@ let data = new Data(),
     noteFullWindow = document.getElementById("note-full-window"),
     allThemes = [],
     uniqueThemes = [],
-    themesMinimized = document.getElementsByClassName("theme-minimized"),
+    themeEntries = document.getElementsByClassName("theme-entry"),
     searchInput = document.querySelector("#searchInput"),
-    sortSelect = document.querySelector("#sort-select");
+    sortSelect = document.querySelector("#sort-select"),
+    notesContainer = document.querySelector(".notes-container");
 
 for(let i = 0; i < data.dataArray.length; i++){
   allThemes.push(data.dataArray[i].theme);
@@ -49,25 +50,25 @@ function countDuplicates(array, element){
 
 function createNewMinimizedTheme(theme, numberOfNotes){
   let newMinimizedTheme = document.createElement("div");
-	newMinimizedTheme.classList.add("theme-minimized");
+	newMinimizedTheme.classList.add("theme-entry");
 	newMinimizedTheme.setAttribute("id", theme);
 
   if(theme){
     newMinimizedTheme.innerHTML =
-		"<div class='theme-minimized-title'>" + theme + `</div>
+		"<div class='theme-minimized'>" + theme + `</div>
 		<div class="numberOfNotes-minimized"> Notizenanzahl:` + numberOfNotes + "</div>";
   }else{
     newMinimizedTheme.innerHTML =
-    `<div class='theme-minimized-title'>[Kein Thema angegeben]</div>
+    `<div class='theme-minimized'>[Kein Thema angegeben]</div>
   	<div class="numberOfNotes-minimized"> Notizenanzahl:` + numberOfNotes + "</div>";
   }
 
-	themeList.appendChild(newMinimizedTheme);
+	notesContainer.appendChild(newMinimizedTheme);
 
 	newMinimizedTheme.addEventListener("click", function(){
 		showNotes(theme, numberOfNotes);
 
-    let minimizedThemes = document.getElementsByClassName("theme-minimized");
+    let minimizedThemes = document.getElementsByClassName("theme-entry");
     for(let i = 0; i < minimizedThemes.length; i++){
       minimizedThemes[i].classList.remove("highlighted");
     }
@@ -94,12 +95,12 @@ function showNotes(theme, numberOfNotes){
     createNewMinimizedNote(currentNote);
   }
 
-  themesMinimized = document.getElementsByClassName("theme-minimized");
+  themeEntries = document.getElementsByClassName("theme-entry");
 }
 
 function createNewMinimizedNote(note){
-  let newMinimizedNote = new MinimizedNote(note.id, note. title,
-      note.description, note.theme, note.color,
+  let newMinimizedNote = new MinimizedNote(note.id, note.title,
+      note.source, note.theme, note.color,
       note.lastUpdated),
   newMinimizedNoteHTMLElement = newMinimizedNote.getHTMLElement();
 
@@ -129,7 +130,9 @@ function openFullNote(id){
       minimizedNotes[i].classList.remove("hidden");
     }
   });
-  document.querySelector(".edit-button").remove();
+  document.querySelector(".edit-button").addEventListener("click", function(){
+    window.location = ".\\index.html?id=" + encodeURIComponent(id);
+  });
 }
 
 function loadAllThemesToDOM(){
@@ -153,15 +156,16 @@ function getURLVariable(variable){
 
 function checkURL(){
   if(getURLVariable("theme")){
-    searchInput.value = getURLVariable("theme");
+    searchInput.value = decodeURIComponent(getURLVariable("theme"));
     searchThemes();
-    for(let i = 0; i < themesMinimized.length; i++){
-      if(window.getComputedStyle(themesMinimized[i]).display !== "none"){
-        themesMinimized[i].click();
+    for(let i = 0; i < themeEntries.length; i++){
+      if(window.getComputedStyle(themeEntries[i]).display !== "none"){
+        themeEntries[i].click();
       }
     }
     searchInput.value = "";
     searchThemes();
+    document.querySelector(".theme-entry.highlighted").scrollIntoView({block: "start", behavior: "smooth"});
   }
 }
 
@@ -178,20 +182,20 @@ function searchThemes(){
 
 	filter = searchInput.value.toUpperCase();
 
-	for(let i = 0; i<themesMinimized.length; i++){
-		txtValue = (themesMinimized[i].firstChild.innerText || themesMinimized[i].firstChild.textContent);
+	for(let i = 0; i<themeEntries.length; i++){
+		txtValue = (themeEntries[i].firstChild.innerText || themeEntries[i].firstChild.textContent);
 
 		if(txtValue.toUpperCase().indexOf(filter) > -1){
-      themesMinimized[i].classList.remove("search-hidden");
+      themeEntries[i].classList.remove("search-hidden");
 		}else{
-			themesMinimized[i].classList.add("search-hidden");
+      themeEntries[i].classList.add("search-hidden");
 		}
 	}
 }
 
 function sortNotes(){
-	while(sortSelect.nextSibling){
-		themeList.removeChild(sortSelect.nextSibling);
+  while(notesContainer.firstChild){
+		notesContainer.removeChild(notesContainer.firstChild);
 	}
 	switch(sortSelect.value){
 		case "notesnumber-desc":
