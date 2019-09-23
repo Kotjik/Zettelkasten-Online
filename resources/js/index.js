@@ -114,17 +114,25 @@ buttonNewNote.addEventListener("click", function() {
         colorBoxes[i].classList.remove("highlighted");
     }
     colorBoxes[0].classList.add("highlighted");
+    notesMinimized = document.getElementsByClassName("note-minimized");
+    for(let i=0; i<notesMinimized.length; i++){
+      notesMinimized[i].classList.remove("highlighted");
+    }
+    currentNoteId = 0;
 
     buttonNewNoteDelete.classList.add("hidden");
     openNoteEditor();
 });
 buttonNewNoteCancel.addEventListener("click", function() {
     closeNewNoteEditor();
-    openFullNote(currentNoteId);
+    if(currentNoteId !== 0){
+      openFullNote(currentNoteId);
+    }
 });
 buttonNewNoteSave.addEventListener("click", saveNote);
 buttonNewNoteDelete.addEventListener("click", function() {
     confirmDeletion();
+    confirmationDeletionWindow.scrollIntoView({block: "start", behavior: "smooth"});
 });
 buttonDeleteConfirm.addEventListener("click", function() {
     deleteNote(currentNoteId);
@@ -193,9 +201,10 @@ function saveNote() {
 
     data.addNoteToStorage(newNote);
     createNewMinimizedNote(newNote);
-    openFullNote(newNote.id);
     sortNotes();
-
+    // openFullNote(newNote.id);
+    document.getElementById(newNote.id).click();
+    document.getElementById(newNote.id).scrollIntoView({block: "start", behavior: "smooth"});
 }
 
 function createNewMinimizedNote(note) {
@@ -209,9 +218,9 @@ function createNewMinimizedNote(note) {
 
     newMinimizedNoteHTMLElement.addEventListener("click", function() {
         openFullNote(note.id);
-        let minimizedNotes = document.getElementsByClassName("note-minimized");
-        for (let i = 0; i < minimizedNotes.length; i++) {
-            minimizedNotes[i].classList.remove("highlighted");
+        let notesMinimized = document.getElementsByClassName("note-minimized");
+        for (let i = 0; i < notesMinimized.length; i++) {
+            notesMinimized[i].classList.remove("highlighted");
         }
         newMinimizedNoteHTMLElement.classList.add("highlighted");
     });
@@ -229,10 +238,21 @@ function openFullNote(id) {
             currentNote.lastUpdated, currentNote.creationDate),
         fullNoteHTMLElement = fullNote.getHTMLElement();
     noteFullWindow.appendChild(fullNoteHTMLElement);
-    document.querySelector(".close-button").addEventListener("click", closeFullNote);
+    document.querySelector(".close-button").addEventListener("click", function(){
+      closeFullNote();
+      for(let i=0; i<notesMinimized.length; i++){
+        notesMinimized[i].classList.remove("highlighted");
+      }
+      currentNoteId = 0;
+    });
     document.querySelector(".edit-button").addEventListener("click", function() {
         buttonNewNoteDelete.classList.remove("hidden");
         editNote(currentNoteId);
+    });
+    document.querySelector(".color-box-full").addEventListener("click", function(){
+      filterSelect.value = currentNote.color;
+      filterNotes(currentNote.color);
+      filterSelect.className = filterSelect.value;
     });
     currentNoteId = id;
 }
@@ -301,7 +321,7 @@ function searchNotes() {
         // txtValue = (notesMinimized[i].innerText || notesMinimized[i].textContent);
         let colorValue = translateColor(lookup[notesMinimized[i].id].color);
 
-        txtValue = lookup[notesMinimized[i].id].title + lookup[notesMinimized[i].id].description +
+        txtValue = lookup[notesMinimized[i].id].title + stripHTMLTags(lookup[notesMinimized[i].id].description) +
             lookup[notesMinimized[i].id].source + lookup[notesMinimized[i].id].theme +
             colorValue + lookup[notesMinimized[i].id].creationDate +
             lookup[notesMinimized[i].id].lastUpdated;
@@ -312,6 +332,16 @@ function searchNotes() {
             notesMinimized[i].classList.add("search-hidden");
         }
     }
+}
+
+function stripHTMLTags(str){
+  let result = "";
+  if((str===null) || (str==="")){
+    result = "[Keine Beschreibung]";
+  }else{
+    result = str.toString();
+  }
+  return result.replace(/<[^>]*>/g, "");
 }
 
 function sortNotes() {
@@ -405,6 +435,10 @@ function sortNotes() {
     loadAllNotesToDOM();
     filterNotes(filterSelect.value);
     searchNotes();
+    if(currentNoteId !== 0){
+      document.getElementById(currentNoteId).click();
+      document.getElementById(currentNoteId).scrollIntoView({block: "start", behavior: "smooth"});
+    }
 }
 
 function filterNotes(color) {

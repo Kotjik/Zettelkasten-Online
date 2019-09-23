@@ -7,6 +7,8 @@
     <title>Zettelkasten - Home</title>
     <link href="resources/css/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 </head>
 
 <body id="body">
@@ -55,7 +57,7 @@
               </select>
             </td>
             <td>
-              <div id="button-new-note"> Neuer Zettel </div>
+              <div id="button-new-note"><nobr><i class="fa fa-plus-square"> </i> Neuer Zettel </nobr></div>
             </td>
 
         </tr>
@@ -76,8 +78,8 @@
             <div id="description-input"></div>
             <input id="source-input" type="text" name="source" title="Quelle" placeholder="Quelle">
             <input id="theme-input" type="text" name="theme" title="Thema" placeholder="Thema">
-            <div id="color-picker">
-            <p>Farbe:</p>
+            <div class="color-picker">
+              <p>Farbe:</p>
               <div id="blue" class="color-box blue highlighted" title="blau"></div>
               <div id="purple" class="color-box purple" title="lila"></div>
               <div id="wine" class="color-box wine" title="weinrot"></div>
@@ -88,16 +90,16 @@
               <div id="white" class="color-box white" title="weiß"></div>
               <div id="black" class="color-box black" title="schwarz"></div>
             </div>
-            <br><br><br>
-
-            <button id="button-new-note-save" type="button">Speichern</button>
-            <button id="button-new-note-delete" type="button">Löschen</button>
-            <button id="button-new-note-cancel" type="button">Abbrechen</button>
+            <div class="note-editor-buttons-container">
+            <button id="button-new-note-save" type="button"><i class ="fa fa-save"></i> Speichern</button>
+            <button id="button-new-note-delete" type="button"><i class="fa fa-trash"></i> Löschen</button>
+            <button id="button-new-note-cancel" class="" type="button">Abbrechen</button>
             <div id="confirmation-deletion" class="hidden">
                 Wollen Sie diesen Zettel unwiederruflich löschen?
                 <button id="button-delete-confirm">Ja</button>
                 <button id="button-delete-cancel">Abbrechen</button>
             </div>
+          </div>
 
         </div>
 

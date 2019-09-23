@@ -5,10 +5,14 @@ html {
 body {
     margin: 0;
     background: #2C3E50;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
     color: #ECF0F1;
     height: 100%;
     display: flex;
+}
+h1, h2, h3, h4, h5, h6 {
+ font-weight: 500;
 }
 
 body div {
@@ -106,6 +110,9 @@ body div {
   grid-template-areas: "header header" "menu aboutUs";
   grid-column-gap: 50px;
   padding: 0;
+  background: #ECF0F1;
+  color: #414242;
+  text-align: justify;
 }
 .aboutUs{
   grid-area: aboutUs;
@@ -127,7 +134,7 @@ body div {
 
 
 #button-new-note{
-  background-color: #E74C3C; /* Green */
+  background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -139,7 +146,7 @@ body div {
     cursor: pointer;
 }
 #button-new-note:hover, button-new-note:active{
-  background-color: #d63b2b;
+  background-color: #3b9e40;
 }
 
 .note-minimized{
@@ -268,6 +275,7 @@ body div {
   position:relative;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 .last-updated-full{
   position:relative;
@@ -433,7 +441,6 @@ button{
 }
 
 #searchInput{
-  background-image: url("resources/img/search-icon.png");
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 98%;
@@ -535,7 +542,7 @@ select {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
@@ -572,4 +579,17 @@ select {
 }
 #button-delete-cancel:hover, #button-delete-cancel:active{
   background-color: #444444;
+}
+
+a{
+  color: #414242;
+  text-decoration: none;
+  text-underline: none;
+}
+.color-picker{
+  padding: 0;
+  display: flex;
+}
+.note-editor-buttons-container{
+  padding: 0;
 }

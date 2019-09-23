@@ -46,7 +46,7 @@ function getInnerHTML(title, description, source, theme, color, lastUpdated, cre
   <div class='last-updated-full'>Zuletzt bearbeitet: ` + lastUpdated + `</div>
   <div class="creation-full">Erstellt: ` + creationDate + `</div>
   <div class="close-button">×</div>
-  <div class="edit-button">Zettel bearbeiten</div>`;
+  <div class="edit-button">&#9998; Zettel bearbeiten</div>`;
 }
 
 function translateColor(color){
