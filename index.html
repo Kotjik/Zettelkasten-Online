@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zettelkasten - Home</title>
-    <link href="resources/css/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/css/style.css">
+    <link href="resources/css/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="shortcut icon" href="resources/img/notes.png" />
 </head>
-
 <body id="body">
   <div class="grid-container">
     <div id="application-heading"><h1>Zettelkasten Online - Zettel</h1></div>
@@ -64,6 +64,18 @@
         </table>
       </div>
       <div class="notes-container">
+      </div>
+      <div class="notes-bottom">
+        <div class="number-of-notes">Zettel gefunden:</div>
+        <div class="delete-all-notes">-Alle Zettel löschen-</div>
+        <div class="delete-all-notes-confirmation hidden">
+            Wollen Sie <b>alle</b> (inklusive der durch die eingestellten Filter nicht angezeigten) Zettel unwiederruflich löschen?
+            Falls ja, schreiben Sie "DELETE" in das Eingabefeld und klicken Sie auf "Bestätigen".
+            <br>
+            <input id="delete-all-notes-confirmation-input" type="text" name="confirmation" title="Eingabefeld" placeholder="Eingabefeld">
+            <button id="delete-all-notes-confirmation-confirm">Bestätigen</button>
+            <button id="delete-all-notes-confirmation-cancel">Abbrechen</button>
+        </div>
       </div>
 
     </div>

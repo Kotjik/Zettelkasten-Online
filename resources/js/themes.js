@@ -9,6 +9,7 @@ function init() {
   loadAllThemesToDOM();
   checkURL();
   sortSelect.value = "alphabetical-asc";
+  updateNumberOfThemes();
 }
 
 // Buttons & Declarations
@@ -20,7 +21,8 @@ let data = new Data(),
     themeEntries = document.getElementsByClassName("theme-entry"),
     searchInput = document.querySelector("#searchInput"),
     sortSelect = document.querySelector("#sort-select"),
-    notesContainer = document.querySelector(".notes-container");
+    notesContainer = document.querySelector(".notes-container"),
+    numberOfThemes = document.querySelector(".number-of-themes");
 
 for(let i = 0; i < data.dataArray.length; i++){
   allThemes.push(data.dataArray[i].theme);
@@ -191,6 +193,7 @@ function searchThemes(){
       themeEntries[i].classList.add("search-hidden");
 		}
 	}
+  updateNumberOfThemes();
 }
 
 function sortNotes(){
@@ -240,7 +243,20 @@ function sortNotes(){
 	loadAllThemesToDOM();
   searchThemes();
 }
-
+//
+// bottom of themes
+//
+function updateNumberOfThemes(){
+  let themeEntries = document.getElementsByClassName("theme-entry"),
+      counter = 0;
+  for(let i=0; i<themeEntries.length; i++){
+    if(!themeEntries[i].classList.contains("hidden") &&
+       !themeEntries[i].classList.contains("search-hidden")){
+      counter++;
+    }
+  }
+  numberOfThemes.innerHTML = "Themen gefunden: " + counter;
+}
 
 
 init();

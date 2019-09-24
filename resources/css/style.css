@@ -561,6 +561,7 @@ select {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
 }
 #button-delete-confirm:hover, #button-delete-confirm:active{
   background-color: #e33225;
@@ -592,4 +593,42 @@ a{
 }
 .note-editor-buttons-container{
   padding: 0;
+}
+
+.notes-bottom{
+  text-align: center;
+  padding-bottom: 0;
+}
+.number-of-notes{
+  padding:0;
+}
+.number-of-themes{
+  padding:0;
+}
+.number-of-sources{
+  padding:0;
+}
+.delete-all-notes{
+  padding:0;
+  color: #eee;
+}
+.delete-all-notes:hover, .delete-all-notes:active{
+  cursor:pointer;
+  color: red;
+}
+.delete-all-notes-confirmation{
+  padding: 0;
+  padding-bottom: 5px;
+  border: 3px solid rgba(255, 0, 0, 1);
+  background-color: #FFBBC3;
+  color: black;
+}
+#delete-all-notes-confirmation-confirm{
+  font-family: 'Quicksand', sans-serif;
+}
+#delete-all-notes-confirmation-cancel{
+  font-family: 'Quicksand', sans-serif;
+}
+#delete-all-notes-confirmation-confirm:hover{
+  background-color: #e33225;
 }

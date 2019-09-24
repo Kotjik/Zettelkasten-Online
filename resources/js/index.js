@@ -12,7 +12,8 @@ function init() {
     loadAllNotesToDOM();
     sortNotes();
     checkURL();
-}
+    updateNumberOfNotes();
+  }
 
 // declarations
 let data = new Data(),
@@ -37,9 +38,14 @@ let data = new Data(),
     searchInput = document.querySelector("#searchInput"),
     sortSelect = document.querySelector("#sort-select"),
     filterSelect = document.querySelector("#filter-select"),
+    numberOfNotes = document.querySelector(".number-of-notes"),
+    deleteAllNotes = document.querySelector(".delete-all-notes"),
+    deleteAllNotesConfirmation = document.querySelector(".delete-all-notes-confirmation"),
+    deleteAllNotesConfirmationInput = document.querySelector("#delete-all-notes-confirmation-input"),
+    deleteAllNotesConfirmationConfirm = document.querySelector("#delete-all-notes-confirmation-confirm"),
+    deleteAllNotesConfirmationCancel = document.querySelector("#delete-all-notes-confirmation-cancel"),
     toolbarOptions = [
         ["bold", "italic", "underline", "strike"], // toggled buttons
-        ["blockquote", "code-block"],
         [{
             "header": 1,
         }, {
@@ -56,18 +62,6 @@ let data = new Data(),
             "script": "super",
         }], // superscript/subscript
         [{
-            "indent": "-1",
-        }, {
-            "indent": "+1",
-        }], // outdent/indent
-        [{
-            "direction": "rtl",
-        }], // text direction
-
-        [{
-            "size": ["small", false, "large", "huge"],
-        }], // custom dropdown
-        [{
             "header": [1, 2, 3, 4, 5, 6, false],
         }],
 
@@ -76,12 +70,6 @@ let data = new Data(),
         }, {
             "background": [],
         }], // dropdown with defaults from theme
-        [{
-            "font": [],
-        }],
-        [{
-            "align": [],
-        }],
 
         ["clean"], // remove formatting button
     ],
@@ -119,8 +107,9 @@ buttonNewNote.addEventListener("click", function() {
       notesMinimized[i].classList.remove("highlighted");
     }
     currentNoteId = 0;
-
+    confirmationDeletionWindow.classList.add("hidden");
     buttonNewNoteDelete.classList.add("hidden");
+
     openNoteEditor();
 });
 buttonNewNoteCancel.addEventListener("click", function() {
@@ -199,6 +188,7 @@ function saveNote() {
         newNote.setCreationDateNoFormat(currentNote.creationDateNoFormat);
     }
 
+    currentNoteId = newNote.id;
     data.addNoteToStorage(newNote);
     createNewMinimizedNote(newNote);
     sortNotes();
@@ -332,6 +322,7 @@ function searchNotes() {
             notesMinimized[i].classList.add("search-hidden");
         }
     }
+    updateNumberOfNotes();
 }
 
 function stripHTMLTags(str){
@@ -467,6 +458,7 @@ function filterNotes(color) {
             notesMinimized[i].classList.add("filter-hidden");
         }
     }
+    updateNumberOfNotes();
 }
 
 function translateColor(color) {
@@ -514,6 +506,42 @@ function checkURL(){
     document.querySelector(".note-minimized.highlighted").scrollIntoView({block: "start", behavior: "smooth"});
   }
 }
+
+
+//
+// bottom of notes
+//
+function updateNumberOfNotes(){
+  let notesMinimized = document.getElementsByClassName("note-minimized"),
+      counter = 0;
+  for(let i=0; i<notesMinimized.length; i++){
+    if(!notesMinimized[i].classList.contains("hidden") &&
+       !notesMinimized[i].classList.contains("filter-hidden") &&
+       !notesMinimized[i].classList.contains("search-hidden")){
+      counter++;
+    }
+  }
+  numberOfNotes.innerHTML = "Zettel gefunden: " + counter;
+}
+
+deleteAllNotes.addEventListener("click", function(){
+  deleteAllNotesConfirmation.classList.remove("hidden");
+  deleteAllNotesConfirmationInput.value = "";
+});
+deleteAllNotesConfirmationConfirm.addEventListener("click", function(){
+  if(deleteAllNotesConfirmationInput.value === "DELETE"){
+    localStorage.clear();
+    init();
+    deleteAllNotesConfirmationInput.value = "";
+    deleteAllNotesConfirmation.classList.add("hidden");
+  }else{
+    return;
+  }
+});
+deleteAllNotesConfirmationCancel.addEventListener("click", function(){
+  deleteAllNotesConfirmationInput.value = "";
+  deleteAllNotesConfirmation.classList.add("hidden");
+});
 
 
 
