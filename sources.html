@@ -12,77 +12,42 @@
 </head>
 
 <body>
-  <div class="grid-container">
-    <div id="application-heading"><h1>Zettelkasten Online - Quellen</h1></div>
-    <div id="side-menu">
+    <div class="grid-container">
+        <div id="application-heading">
+            <h1>Zettelkasten Online - Quellen</h1></div>
+        <div id="side-menu">
 
+            <a href=".\index.html" class="menu-points"> Zettel </a>
+            <a href=".\sources.html" class="menu-points"> Quellen </a>
+            <a href=".\themes.html" class="menu-points"> Themen </a>
+            <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
 
-      <a href=".\index.html" class="menu-points"> Zettel </a>
-      <a href=".\sources.html" class="menu-points"> Quellen </a>
-      <a href=".\themes.html" class="menu-points"> Themen </a>
-      <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
+        </div>
 
+        <div id="source-list">
+            <div class="instruments">
+                <input type="text" id="searchInput" placeholder="Suche Quelle" title="Gebe einen Suchbegriff ein">
+                <br>
+                <select id="sort-select">
+                    <option value="alphabetical-asc">Alphabetisch (aufsteigend)</option>
+                    <option value="alphabetical-desc">Alphabetisch (absteigend)</option>
+                    <option value="notesnumber-asc">Notizenanzahl (aufsteigend)</option>
+                    <option value="notesnumber-desc">Notizenanzahl (absteigend)</option>
+                </select>
+            </div>
+            <div class="notes-container">
+            </div>
+            <div class="notes-bottom">
+                <div class="number-of-sources">Quellen gefunden:</div>
+            </div>
 
-    </div>
+        </div>
 
+        <div id="note-full-window">
 
-
-    <div id="source-list">
-      <div class="instruments">
-      <input type="text" id="searchInput" placeholder="Suche Quelle" title="Gebe einen Suchbegriff ein"><br>
-      <select id="sort-select">
-        <option value="alphabetical-asc">Alphabetisch (aufsteigend)</option>
-        <option value="alphabetical-desc">Alphabetisch (absteigend)</option>
-        <option value="notesnumber-asc">Notizenanzahl (aufsteigend)</option>
-        <option value="notesnumber-desc">Notizenanzahl (absteigend)</option>
-      </select>
-    </div>
-    <div class="notes-container">
-    </div>
-    <div class="notes-bottom">
-      <div class="number-of-sources">Quellen gefunden:</div>
-    </div>
-
-    </div>
-
-    <div id="note-full-window">
-      <div id="note-editor" class="note-editor hidden">
-          <h2 class="note-editor-heading">Zettel bearbeiten</h2>
-          <input id="title-input" type="text" name="title" title="Titel" placeholder="Titel">
-
-          <!-- <input id="description-input" type="text" name="description" placeholder="Beschreibung"><br> -->
-          <div id="description-input"></div>
-          <input id="source-input" type="text" name="source" title="Quelle" placeholder="Quelle">
-          <input id="theme-input" type="text" name="theme" title="Thema" placeholder="Thema">
-          <div id="color-picker">
-          <p>Farbe:</p>
-            <div id="blue" class="color-box blue highlighted" title="blau"></div>
-            <div id="purple" class="color-box purple" title="lila"></div>
-            <div id="wine" class="color-box wine" title="weinrot"></div>
-            <div id="red" class="color-box red" title="rot"></div>
-            <div id="green" class="color-box green" title="grün"></div>
-            <div id="pink" class="color-box pink" title="pink"></div>
-            <div id="brown" class="color-box brown" title="braun"></div>
-            <div id="white" class="color-box white" title="weiß"></div>
-            <div id="black" class="color-box black" title="schwarz"></div>
-          </div>
-          <br><br><br>
-
-          <button id="button-new-note-save" type="button">Speichern</button>
-          <button id="button-new-note-delete" type="button">Löschen</button>
-          <button id="button-new-note-cancel" type="button">Abbrechen</button>
-          <div id="confirmation-deletion" class="hidden">
-              Wollen Sie diesen Zettel unwiederruflich löschen?
-              <button id="button-delete-confirm">Ja</button>
-              <button id="button-delete-cancel">Abbrechen</button>
-          </div>
-
-      </div>
-
+        </div>
 
     </div>
-
-  </div>
     <script type="module" src="resources/js/sources.js"></script>
     <script src="resources/js/quill.js"></script>
 </body>

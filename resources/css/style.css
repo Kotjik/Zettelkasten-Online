@@ -4,7 +4,7 @@ html {
 }
 body {
     margin: 0;
-    background: #2C3E50;
+    background: #ECF0F1;
     font-family: 'Quicksand', sans-serif;
     font-weight: 300;
     color: #ECF0F1;
@@ -29,7 +29,7 @@ body div {
   grid-template-columns: 0.5fr 1fr 1.5fr;
   grid-template-rows: 0.1fr 1.5fr;
   grid-template-areas: "header header header" "menu list full";
-  grid-column-gap: 2%;
+  grid-column-gap: 1.5%;
   padding: 0;
 }
 
@@ -38,8 +38,8 @@ body div {
     color: #ECF0F1;
     border-style: solid;
     border-width: 0 0 0.25vh 0;
-    border-color: #FFF;
-    background-color: #2980B9;
+    border-color: #ECF0F1;
+    background-color: #2E70F2;
 }
 
 #side-menu{
@@ -51,6 +51,8 @@ body div {
   padding: 20px;
   background: #3498DB;
   box-sizing: border-box;
+  border-radius: 0px 15px 0px 0px;
+
 }
 
 #note-list{
@@ -63,6 +65,8 @@ body div {
   display: flex;
   flex-flow: column;
   height: 100%;
+  border-radius: 15px 15px 0px 0px;
+
   /* overflow: auto; */
 }
 
@@ -75,6 +79,8 @@ body div {
   background: #3498DB;
   box-sizing: border-box;
   overflow: auto;
+  border-radius: 15px 0px 0px 0px;
+
   /* display: inline-block; */
 }
 
@@ -88,6 +94,8 @@ body div {
   display: flex;
   flex-flow: column;
   height: 100%;
+  border-radius: 15px 15px 0px 0px;
+
 }
 
 #theme-list{
@@ -100,6 +108,8 @@ body div {
   display: flex;
   flex-flow: column;
   height: 100%;
+  border-radius: 15px 15px 0px 0px;
+
 }
 
 .grid-container-aboutUs{
@@ -126,6 +136,8 @@ body div {
   text-decoration: none;
   display: block;
   margin-bottom: 2%;
+  border-radius: 15px;
+
 }
 
 .menu-points:hover, .menu-points:active{
@@ -144,6 +156,8 @@ body div {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+
 }
 #button-new-note:hover, button-new-note:active{
   background-color: #3b9e40;
@@ -156,6 +170,7 @@ body div {
   margin-bottom: 2%;
   overflow: auto;
   cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -181,7 +196,7 @@ body div {
   height:auto;
   overflow-wrap: break-word;
   border: 1px solid #2C3E50;
-
+  border-radius: 5px 5px 5px 5px;
 }
 /* .description-minimized > *{
 
@@ -207,7 +222,7 @@ body div {
   right: 5px;
   width: 15px;
   height: 15px;
-
+  border-radius: 5px 5px 5px 5px;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -221,11 +236,12 @@ body div {
 }
 
 #note-editor{
-  color: black;
+  color: #414242;
   position: relative;
-  background-color: #ECF0F1;
+  background-color: #EDF1F2;
   margin-bottom: 2%;
   overflow: auto;
+  border-radius: 5px 5px 5px 5px;
 }
 
 
@@ -235,6 +251,7 @@ body div {
   /* height: 90%; */
   /* overflow: auto; */
   color: black;
+  border-radius: 5px 5px 5px 5px;
 }
 .title-full{
   position:relative;
@@ -276,6 +293,7 @@ body div {
   width: 20px;
   height: 20px;
   cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
 }
 .last-updated-full{
   position:relative;
@@ -309,7 +327,7 @@ body div {
   height: 100%;
   padding-top: 10px;
   padding-bottom:10px;
-
+  border-radius: 5px 5px 5px 5px;
   cursor: pointer;
   text-align: center;
   background-color: #E74C3C;
@@ -332,6 +350,7 @@ body div {
   border: 1px solid rgba(0, 0, 0, .2);
   cursor: pointer;
   position: relative;
+  border-radius: 5px 5px 5px 5px;
 }
 .nothing{
   background: #fff;
@@ -374,7 +393,7 @@ body div {
   color: white;
 }
 .highlighted{
-  border: 5px solid yellow;
+  border: 5px solid #3A4451;
 }
 
 #confirmation-deletion{
@@ -388,6 +407,7 @@ body div {
   background-color: #eee;
   margin-bottom: 2%;
   overflow: auto;
+  border-radius: 5px 5px 5px 5px;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -419,6 +439,7 @@ body div {
   background-color: #eee;
   margin-bottom: 2%;
   overflow: auto;
+  border-radius: 5px 5px 5px 5px;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -434,6 +455,7 @@ body div {
 }
 button{
   cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
 }
 
 #description-input{
@@ -448,6 +470,7 @@ button{
   padding: 12px 0px 12px 2%;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+  border-radius: 5px 5px 5px 5px;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -486,6 +509,7 @@ select {
   margin-bottom: 0.2vw;
   margin-left: 0;
   margin-right: 0;
+
 }
 
 .instruments{
@@ -496,13 +520,15 @@ select {
   height: 10px;
   overflow: auto;
   flex-grow: 1;
+  border-radius: 5px 5px 5px 5px;
+
 }
 
 #aboutus_page{
   overflow: auto;
 }
 .member_image{
-  height: 400px;
+  width: 20vw;
 }
 
 #button-new-note-save{
@@ -631,4 +657,18 @@ a{
 }
 #delete-all-notes-confirmation-confirm:hover{
   background-color: #e33225;
+}
+
+#institution_name{
+  color: #747575;
+}
+#institution_title, #team_title, #product_title{
+  font-size: 24px;
+}
+#product{
+  /* width: auto; */
+}
+#product_presentation, #institution_presentation{
+  margin-right: 5vw;
+
 }

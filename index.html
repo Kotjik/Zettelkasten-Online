@@ -11,116 +11,117 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
     <link rel="shortcut icon" href="resources/img/notes.png" />
 </head>
+
 <body id="body">
-  <div class="grid-container">
-    <div id="application-heading"><h1>Zettelkasten Online - Zettel</h1></div>
-    <div id="side-menu">
+    <div class="grid-container">
+        <div id="application-heading">
+            <h1>Zettelkasten Online - Zettel</h1></div>
+        <div id="side-menu">
 
-        <a href=".\index.html" class="menu-points"> Zettel </a>
-        <a href=".\sources.html" class="menu-points"> Quellen </a>
-        <a href=".\themes.html" class="menu-points"> Themen </a>
-        <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
+            <a href=".\index.html" class="menu-points"> Zettel </a>
+            <a href=".\sources.html" class="menu-points"> Quellen </a>
+            <a href=".\themes.html" class="menu-points"> Themen </a>
+            <a href=".\aboutUs.html" class="menu-points"> Über uns </a>
 
-    </div>
-    <div id="note-list">
-        <!-- <p style="float:left;">Nach Farbe filtern:</p><br> -->
-      <div class="instruments">
-        <table>
-          <tr>
-            <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein">
-          </tr>
-          <tr>
-            <td>
-              <select id="sort-select">
-                <option selected disabled>Sortieren nach ...</option>
-                <option value="last-updated-asc">Zuletzt Bearbeitet (aufsteigend)</option>
-                <option value="last-updated-desc">Zuletzt Bearbeitet (absteigend)</option>
-                <option value="created-asc">Erstellt (aufsteigend)</option>
-                <option value="created-desc">Erstellt (absteigend)</option>
-                <option value="alphabetical-asc">Alphabetisch (aufsteigend)</option>
-                <option value="alphabetical-desc">Alphabetisch (absteigend)</option>
-            </select>
-            </td>
-            <td>
-              <select id="filter-select">
-                <option selected disabled>Filtern nach ...</option>
-                <option value="nothing">- kein Filter -</option>
-                <option class="blue" value="blue">blau</option>
-                <option class="purple" value="purple">lila</option>
-                <option class="wine" value="wine">weinrot</option>
-                <option class="red" value="red">rot</option>
-                <option class="green" value="green">grün</option>
-                <option class="pink" value="pink">pink</option>
-                <option class="brown" value="brown">braun</option>
-                <option class="white" value="white">weiß</option>
-                <option class="black" value="black">schwarz</option>
-              </select>
-            </td>
-            <td>
-              <div id="button-new-note"><nobr><i class="fa fa-plus-square"> </i> Neuer Zettel </nobr></div>
-            </td>
-
-        </tr>
-        </table>
-      </div>
-      <div class="notes-container">
-      </div>
-      <div class="notes-bottom">
-        <div class="number-of-notes">Zettel gefunden:</div>
-        <div class="delete-all-notes">-Alle Zettel löschen-</div>
-        <div class="delete-all-notes-confirmation hidden">
-            Wollen Sie <b>alle</b> (inklusive der durch die eingestellten Filter nicht angezeigten) Zettel unwiederruflich löschen?
-            Falls ja, schreiben Sie "DELETE" in das Eingabefeld und klicken Sie auf "Bestätigen".
-            <br>
-            <input id="delete-all-notes-confirmation-input" type="text" name="confirmation" title="Eingabefeld" placeholder="Eingabefeld">
-            <button id="delete-all-notes-confirmation-confirm">Bestätigen</button>
-            <button id="delete-all-notes-confirmation-cancel">Abbrechen</button>
         </div>
-      </div>
+        <div id="note-list">
+            <!-- <p style="float:left;">Nach Farbe filtern:</p><br> -->
+            <div class="instruments">
+                <table>
+                    <tr>
+                        <input type="text" id="searchInput" placeholder="Suche Zettel nach Titel, Farbe, Thema, etc." title="Gebe einen Suchbegriff ein">
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="sort-select">
+                                <option selected disabled>Sortieren nach ...</option>
+                                <option value="last-updated-asc">Zuletzt Bearbeitet (aufsteigend)</option>
+                                <option value="last-updated-desc">Zuletzt Bearbeitet (absteigend)</option>
+                                <option value="created-asc">Erstellt (aufsteigend)</option>
+                                <option value="created-desc">Erstellt (absteigend)</option>
+                                <option value="alphabetical-asc">Alphabetisch (aufsteigend)</option>
+                                <option value="alphabetical-desc">Alphabetisch (absteigend)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="filter-select">
+                                <option selected disabled>Filtern nach ...</option>
+                                <option value="nothing">- kein Filter -</option>
+                                <option class="blue" value="blue">blau</option>
+                                <option class="purple" value="purple">lila</option>
+                                <option class="wine" value="wine">weinrot</option>
+                                <option class="red" value="red">rot</option>
+                                <option class="green" value="green">grün</option>
+                                <option class="pink" value="pink">pink</option>
+                                <option class="brown" value="brown">braun</option>
+                                <option class="white" value="white">weiß</option>
+                                <option class="black" value="black">schwarz</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div id="button-new-note">
+                                <nobr><i class="fa fa-plus-square"> </i> Neuer Zettel </nobr>
+                            </div>
+                        </td>
 
-    </div>
-
-    <div id="note-full-window">
-
-        <div id="note-editor" class="note-editor hidden">
-            <h2 class="note-editor-heading"></h2>
-            <input id="title-input" type="text" name="title" title="Titel" placeholder="Titel">
-
-            <!-- <input id="description-input" type="text" name="description" placeholder="Beschreibung"><br> -->
-            <div id="description-input"></div>
-            <input id="source-input" type="text" name="source" title="Quelle" placeholder="Quelle">
-            <input id="theme-input" type="text" name="theme" title="Thema" placeholder="Thema">
-            <div class="color-picker">
-              <p>Farbe:</p>
-              <div id="blue" class="color-box blue highlighted" title="blau"></div>
-              <div id="purple" class="color-box purple" title="lila"></div>
-              <div id="wine" class="color-box wine" title="weinrot"></div>
-              <div id="red" class="color-box red" title="rot"></div>
-              <div id="green" class="color-box green" title="grün"></div>
-              <div id="pink" class="color-box pink" title="pink"></div>
-              <div id="brown" class="color-box brown" title="braun"></div>
-              <div id="white" class="color-box white" title="weiß"></div>
-              <div id="black" class="color-box black" title="schwarz"></div>
+                    </tr>
+                </table>
             </div>
-            <div class="note-editor-buttons-container">
-            <button id="button-new-note-save" type="button"><i class ="fa fa-save"></i> Speichern</button>
-            <button id="button-new-note-delete" type="button"><i class="fa fa-trash"></i> Löschen</button>
-            <button id="button-new-note-cancel" class="" type="button">Abbrechen</button>
-            <div id="confirmation-deletion" class="hidden">
-                Wollen Sie diesen Zettel unwiederruflich löschen?
-                <button id="button-delete-confirm">Ja</button>
-                <button id="button-delete-cancel">Abbrechen</button>
+            <div class="notes-container">
             </div>
-          </div>
+            <div class="notes-bottom">
+                <div class="number-of-notes">Zettel gefunden:</div>
+                <div class="delete-all-notes">-Alle Zettel löschen-</div>
+                <div class="delete-all-notes-confirmation hidden">
+                    Wollen Sie <b>alle</b> (inklusive der durch die eingestellten Filter nicht angezeigten) Zettel unwiederruflich löschen? Falls ja, schreiben Sie "DELETE" in das Eingabefeld und klicken Sie auf "Bestätigen".
+                    <br>
+                    <input id="delete-all-notes-confirmation-input" type="text" name="confirmation" title="Eingabefeld" placeholder="Eingabefeld">
+                    <button id="delete-all-notes-confirmation-confirm">Bestätigen</button>
+                    <button id="delete-all-notes-confirmation-cancel">Abbrechen</button>
+                </div>
+            </div>
 
         </div>
 
-    </div>
-  </div>
+        <div id="note-full-window">
 
-    <!-- Eigentlich wird type="module" benutzt, aber es wirft eine Fehlermeldung. Vielleicht weil noch nichts als Modul benutzt wird? -->
+            <div id="note-editor" class="note-editor hidden">
+                <h2 class="note-editor-heading"></h2>
+                <input id="title-input" type="text" name="title" title="Titel" placeholder="Titel">
+
+                <!-- <input id="description-input" type="text" name="description" placeholder="Beschreibung"><br> -->
+                <div id="description-input"></div>
+                <input id="source-input" type="text" name="source" title="Quelle" placeholder="Quelle">
+                <input id="theme-input" type="text" name="theme" title="Thema" placeholder="Thema">
+                <div class="color-picker">
+                    <p>Farbe:</p>
+                    <div id="blue" class="color-box blue highlighted" title="blau"></div>
+                    <div id="purple" class="color-box purple" title="lila"></div>
+                    <div id="wine" class="color-box wine" title="weinrot"></div>
+                    <div id="red" class="color-box red" title="rot"></div>
+                    <div id="green" class="color-box green" title="grün"></div>
+                    <div id="pink" class="color-box pink" title="pink"></div>
+                    <div id="brown" class="color-box brown" title="braun"></div>
+                    <div id="white" class="color-box white" title="weiß"></div>
+                    <div id="black" class="color-box black" title="schwarz"></div>
+                </div>
+                <div class="note-editor-buttons-container">
+                    <button id="button-new-note-save" type="button"><i class="fa fa-save"></i> Speichern</button>
+                    <button id="button-new-note-delete" type="button"><i class="fa fa-trash"></i> Löschen</button>
+                    <button id="button-new-note-cancel" class="" type="button">Abbrechen</button>
+                    <div id="confirmation-deletion" class="hidden">
+                        Wollen Sie diesen Zettel unwiederruflich löschen?
+                        <button id="button-delete-confirm">Ja</button>
+                        <button id="button-delete-cancel">Abbrechen</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
     <script type="module" src="resources/js/index.js"></script>
-    <!-- <script src="resources/js/index.js"></script> -->
     <script src="resources/js/quill.js"></script>
 </body>
 

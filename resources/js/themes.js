@@ -5,16 +5,16 @@ import MinimizedNote from "./minimizedNote.js";
 import FullNote from "./fullNote.js";
 
 function init() {
-	//
   loadAllThemesToDOM();
   checkURL();
   sortSelect.value = "alphabetical-asc";
   updateNumberOfThemes();
 }
 
+//
 // Buttons & Declarations
+//
 let data = new Data(),
-    themeList = document.getElementById("theme-list"),
     noteFullWindow = document.getElementById("note-full-window"),
     allThemes = [],
     uniqueThemes = [],
@@ -38,8 +38,9 @@ searchInput.addEventListener("keyup", searchThemes);
 
 sortSelect.addEventListener("change", sortNotes);
 
-// functions
-
+//
+// Themes & Notes functions
+//
 function countDuplicates(array, element){
   let count = 0;
   for(let i = 0; i<array.length; i++){
@@ -132,8 +133,11 @@ function openFullNote(id){
       minimizedNotes[i].classList.remove("hidden");
     }
   });
+  document.querySelector(".color-box-full").addEventListener("click", function(){
+    window.location = ".\\index.html?color=" + encodeURIComponent(currentNote.color);
+  });
   document.querySelector(".edit-button").addEventListener("click", function(){
-    window.location = ".\\index.html?id=" + encodeURIComponent(id);
+    window.location = ".\\index.html?edit=" + encodeURIComponent(id);
   });
 }
 
@@ -144,7 +148,7 @@ function loadAllThemesToDOM(){
 }
 
 //
-// Thema geklick
+// URL parameters functions
 //
 function getURLVariable(variable){
   let query = window.location.search.substring(1),
@@ -172,7 +176,7 @@ function checkURL(){
 }
 
 //
-//Suche & Sortierung
+// Search & Sort Themes
 //
 function searchThemes(){
 	let filter, txtValue,
@@ -243,8 +247,9 @@ function sortNotes(){
 	loadAllThemesToDOM();
   searchThemes();
 }
+
 //
-// bottom of themes
+// Count number of themes
 //
 function updateNumberOfThemes(){
   let themeEntries = document.getElementsByClassName("theme-entry"),
@@ -257,6 +262,5 @@ function updateNumberOfThemes(){
   }
   numberOfThemes.innerHTML = "Themen gefunden: " + counter;
 }
-
 
 init();

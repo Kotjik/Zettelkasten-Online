@@ -5,7 +5,6 @@ import MinimizedNote from "./minimizedNote.js";
 import FullNote from "./fullNote.js";
 
 function init() {
-    console.log(data.dataArray);
     sortSelect.value = "last-updated-desc";
     filterSelect.value = "nothing";
     searchInput.value = "";
@@ -15,10 +14,11 @@ function init() {
     updateNumberOfNotes();
   }
 
-// declarations
+//
+// Buttons & declarations
+//
 let data = new Data(),
     currentNoteId = 0,
-    instruments = document.querySelector(".instruments"),
     notesContainer = document.querySelector(".notes-container"),
     buttonNewNote = document.getElementById("button-new-note"),
     buttonNewNoteCancel = document.getElementById("button-new-note-cancel"),
@@ -28,13 +28,9 @@ let data = new Data(),
     buttonDeleteCancel = document.getElementById("button-delete-cancel"),
     confirmationDeletionWindow = document.getElementById("confirmation-deletion"),
     noteFullWindow = document.getElementById("note-full-window"),
-    noteFull = document.querySelector(".note-full"),
     newNoteEditor = document.getElementById("note-editor"),
     colorBoxes = document.getElementsByClassName("color-box"),
-    noteList = document.getElementById("note-list"),
     notesMinimized = document.getElementsByClassName("note-minimized"),
-    closeButton = document.querySelector(".close-button"),
-    editButton = document.querySelector(".edit-button"),
     searchInput = document.querySelector("#searchInput"),
     sortSelect = document.querySelector("#sort-select"),
     filterSelect = document.querySelector("#filter-select"),
@@ -45,12 +41,12 @@ let data = new Data(),
     deleteAllNotesConfirmationConfirm = document.querySelector("#delete-all-notes-confirmation-confirm"),
     deleteAllNotesConfirmationCancel = document.querySelector("#delete-all-notes-confirmation-cancel"),
     toolbarOptions = [
-        ["bold", "italic", "underline", "strike"], // toggled buttons
+        ["bold", "italic", "underline", "strike"],
         [{
             "header": 1,
         }, {
             "header": 2,
-        }], // custom button values
+        }],
         [{
             "list": "ordered",
         }, {
@@ -60,7 +56,7 @@ let data = new Data(),
             "script": "sub",
         }, {
             "script": "super",
-        }], // superscript/subscript
+        }],
         [{
             "header": [1, 2, 3, 4, 5, 6, false],
         }],
@@ -69,10 +65,11 @@ let data = new Data(),
             "color": [],
         }, {
             "background": [],
-        }], // dropdown with defaults from theme
-
-        ["clean"], // remove formatting button
+        }],
+        ["clean"],
     ],
+    // Rich Text-Editor "Quill". You have to use him like that; that's why we
+    // can't erase the eslint error
     quill = new Quill("#description-input", {
         modules: {
             toolbar: toolbarOptions,
@@ -136,8 +133,9 @@ filterSelect.addEventListener("change", function() {
     filterSelect.className = filterSelect.value;
 });
 
-// functions
-
+//
+// Note functions
+//
 function closeFullNote() {
     if (document.getElementById("note-full")) {
         document.getElementById("note-full").remove();
@@ -147,7 +145,6 @@ function closeFullNote() {
 }
 
 function openNoteEditor() {
-
     newNoteEditor.classList.remove("hidden");
 }
 
@@ -240,9 +237,7 @@ function openFullNote(id) {
         editNote(currentNoteId);
     });
     document.querySelector(".color-box-full").addEventListener("click", function(){
-      filterSelect.value = currentNote.color;
-      filterNotes(currentNote.color);
-      filterSelect.className = filterSelect.value;
+      window.location = ".\\index.html?color=" + encodeURIComponent(currentNote.color);
     });
     currentNoteId = id;
 }
@@ -264,10 +259,11 @@ function editNote(id) {
         colorBoxes[i].classList.remove("highlighted");
     }
     document.getElementById(currentNote.color).classList.add("highlighted");
-
 }
 
-// localStorage -----------------------------------------------
+//
+// Storage functions
+//
 function confirmDeletion() {
     confirmationDeletionWindow.classList.remove("hidden");
 }
@@ -293,8 +289,27 @@ function loadAllNotesToDOM() {
     notesMinimized = document.getElementsByClassName("note-minimized");
 }
 
+deleteAllNotes.addEventListener("click", function(){
+  deleteAllNotesConfirmation.classList.remove("hidden");
+  deleteAllNotesConfirmationInput.value = "";
+});
+deleteAllNotesConfirmationConfirm.addEventListener("click", function(){
+  if(deleteAllNotesConfirmationInput.value === "DELETE"){
+    localStorage.clear();
+    init();
+    deleteAllNotesConfirmationInput.value = "";
+    deleteAllNotesConfirmation.classList.add("hidden");
+  }else{
+    return;
+  }
+});
+deleteAllNotesConfirmationCancel.addEventListener("click", function(){
+  deleteAllNotesConfirmationInput.value = "";
+  deleteAllNotesConfirmation.classList.add("hidden");
+});
+
 //
-//Suche, Sortierung & Filter
+// Search, Sort & Filter
 //
 function searchNotes() {
     let filter, txtValue,
@@ -308,7 +323,6 @@ function searchNotes() {
     filter = searchInput.value.toUpperCase();
 
     for (let i = 0; i < notesMinimized.length; i++) {
-        // txtValue = (notesMinimized[i].innerText || notesMinimized[i].textContent);
         let colorValue = translateColor(lookup[notesMinimized[i].id].color);
 
         txtValue = lookup[notesMinimized[i].id].title + stripHTMLTags(lookup[notesMinimized[i].id].description) +
@@ -437,6 +451,7 @@ function filterNotes(color) {
         for (let i = 0; i < notesMinimized.length; i++) {
             notesMinimized[i].classList.remove("filter-hidden");
         }
+        updateNumberOfNotes();
         return;
     }
 
@@ -487,7 +502,7 @@ function translateColor(color) {
 }
 
 //
-// URL
+// URL parameters functions
 //
 function getURLVariable(variable){
   let query = window.location.search.substring(1),
@@ -500,16 +515,19 @@ function getURLVariable(variable){
 }
 
 function checkURL(){
-  if(getURLVariable("id")){
-    document.getElementById(getURLVariable("id")).click();
+  if(getURLVariable("edit")){
+    document.getElementById(getURLVariable("edit")).click();
     document.querySelector(".edit-button").click();
     document.querySelector(".note-minimized.highlighted").scrollIntoView({block: "start", behavior: "smooth"});
+  }else if(getURLVariable("color")){
+    filterSelect.value = getURLVariable("color");
+    filterNotes(getURLVariable("color"));
+    filterSelect.className = filterSelect.value;
   }
 }
 
-
 //
-// bottom of notes
+// Count found notes
 //
 function updateNumberOfNotes(){
   let notesMinimized = document.getElementsByClassName("note-minimized"),
@@ -523,26 +541,5 @@ function updateNumberOfNotes(){
   }
   numberOfNotes.innerHTML = "Zettel gefunden: " + counter;
 }
-
-deleteAllNotes.addEventListener("click", function(){
-  deleteAllNotesConfirmation.classList.remove("hidden");
-  deleteAllNotesConfirmationInput.value = "";
-});
-deleteAllNotesConfirmationConfirm.addEventListener("click", function(){
-  if(deleteAllNotesConfirmationInput.value === "DELETE"){
-    localStorage.clear();
-    init();
-    deleteAllNotesConfirmationInput.value = "";
-    deleteAllNotesConfirmation.classList.add("hidden");
-  }else{
-    return;
-  }
-});
-deleteAllNotesConfirmationCancel.addEventListener("click", function(){
-  deleteAllNotesConfirmationInput.value = "";
-  deleteAllNotesConfirmation.classList.add("hidden");
-});
-
-
 
 init();

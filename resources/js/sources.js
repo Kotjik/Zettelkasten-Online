@@ -5,16 +5,16 @@ import MinimizedNote from "./minimizedNote.js";
 import FullNote from "./fullNote.js";
 
 function init() {
-	//
   loadAllSourcesToDOM();
   checkURL();
   sortSelect.value = "alphabetical-asc";
   updateNumberOfSources();
 }
 
+//
 // Buttons & Declarations
+//
 let data = new Data(),
-    sourceList = document.getElementById("source-list"),
     noteFullWindow = document.getElementById("note-full-window"),
     allSources = [],
     uniqueSources = [],
@@ -38,8 +38,9 @@ searchInput.addEventListener("keyup", searchSources);
 
 sortSelect.addEventListener("change", sortNotes);
 
-// functions
-
+//
+// Sources and Notes functions
+//
 function countDuplicates(array, element){
   let count = 0;
   for(let i = 0; i<array.length; i++){
@@ -134,8 +135,11 @@ function openFullNote(id){
       minimizedNotes[i].classList.remove("hidden");
     }
   });
+  document.querySelector(".color-box-full").addEventListener("click", function(){
+    window.location = ".\\index.html?color=" + encodeURIComponent(currentNote.color);
+  });
   document.querySelector(".edit-button").addEventListener("click", function(){
-    window.location = ".\\index.html?id=" + encodeURIComponent(id);
+    window.location = ".\\index.html?edit=" + encodeURIComponent(id);
   });
 }
 
@@ -146,7 +150,7 @@ function loadAllSourcesToDOM(){
 }
 
 //
-// URL
+// URL parameters functions
 //
 function getURLVariable(variable){
   let query = window.location.search.substring(1),
@@ -174,7 +178,7 @@ function checkURL(){
 }
 
 //
-// Suche & Sortierung
+// Search & Sort
 //
 
 function searchSources(){
@@ -248,7 +252,7 @@ function sortNotes(){
 }
 
 //
-// bottom of themes
+// count number of themes
 //
 function updateNumberOfSources(){
   let sourceEntries = document.getElementsByClassName("source-entry"),
@@ -261,7 +265,5 @@ function updateNumberOfSources(){
   }
   numberOfSources.innerHTML = "Themen gefunden: " + counter;
 }
-
-
 
 init();

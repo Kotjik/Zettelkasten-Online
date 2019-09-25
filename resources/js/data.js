@@ -1,7 +1,5 @@
 /* eslint-env browser */
 
-/* https://wiki.selfhtml.org/wiki/JavaScript/Web_Storage */
-
 class Data {
 
   constructor() {
