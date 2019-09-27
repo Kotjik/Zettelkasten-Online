@@ -296,9 +296,7 @@ deleteAllNotes.addEventListener("click", function(){
 deleteAllNotesConfirmationConfirm.addEventListener("click", function(){
   if(deleteAllNotesConfirmationInput.value === "DELETE"){
     localStorage.clear();
-    init();
-    deleteAllNotesConfirmationInput.value = "";
-    deleteAllNotesConfirmation.classList.add("hidden");
+    window.location = ".\\index.html";
   }else{
     return;
   }
