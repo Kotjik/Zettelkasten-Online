@@ -263,7 +263,7 @@ function updateNumberOfSources(){
       counter++;
     }
   }
-  numberOfSources.innerHTML = "Themen gefunden: " + counter;
+  numberOfSources.innerHTML = "Quellen gefunden: " + counter;
 }
 
 init();
