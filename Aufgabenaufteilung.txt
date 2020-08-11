@@ -1,0 +1,24 @@
+Aufteilung
+-------------
+
+Konsti 
+------
+-Speicherung (erledigt)
+-Anlegen eines Zettel mit Editor (erledigt)
+-Quellen (erledigt)
+-Zettel verlinken (erledigt)
+-öffnen & schließen (erledigt)
+-Zettel bearbeiten (erledigt)
+-sortieren (erledigt)
+-filtern (erledigt)
+-verlinken (erledigt)
+
+
+
+Dung
+------
+-Design (HTML + CSS) --> Welche Farben passen gut zsm?
+-Github Dokumentation
+-About us 
+
+

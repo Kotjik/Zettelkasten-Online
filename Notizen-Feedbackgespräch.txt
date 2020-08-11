@@ -1,0 +1,22 @@
+Muss im Web zugänglich sein?
+Wenn ja, ist es egal wie?
+-->vlt App Ordner irgendwo zugänglich machen und ausprobieren (Link in Read.me file)
+-->Vlt rechenzentrum mit webspace (uni regensburg homeservers) 
+
+
+Müssen ES6-Module verwendet werden?
+(Frameworks?)
+-->Wäre gut, wenn nicht dann begründen warum (z.B. spezielles Framework), ansonsten lieber Module-Syntax
+
+
+
+
+Features kurz durchgehen.
+Wie wird die Verlinkung funktionieren. 
+Entweder einzelne Zettel verlinken oder nur themen? --> Vielleicht in Featureliste genauer reinschreiben und präzisieren.
+LINKS vielleicht neu formulieren.
+
+
+Was genau dem Nutzer ermöglichen? Und welche Editor genau? 
+
+Vielleicht Datenbank anstatt LocalStorage. --> IndexedDB (lokale Datenbank) mit einer Bibliothek die das erleichtert

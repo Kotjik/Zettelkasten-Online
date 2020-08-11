@@ -252,7 +252,7 @@ function sortNotes(){
 }
 
 //
-// count number of themes
+// count number of sources
 //
 function updateNumberOfSources(){
   let sourceEntries = document.getElementsByClassName("source-entry"),
