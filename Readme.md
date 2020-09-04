@@ -1,6 +1,6 @@
 # Zettelkasten Online
 
-Mit der Anwendung *Zettelkasten Online* können Wissenschaftler und Studierende aus der ganzen Welt für Forschungsarbeiten ihre Quellen in Form von wissenschaftlicher Literatur zentral verwalten und auf eine übersichtliche Darstellung aller aufbereiteten Werke mit ihren zentralen Thesen und dazugehörigen Details zurückgreifen. 
+Mit der Anwendung *Zettelkasten Online* können Wissenschaftler und Studierende aus der ganzen Welt für Forschungsarbeiten ihre Quellen in Form von wissenschaftlicher Literatur zentral verwalten und auf eine übersichtliche Darstellung aller aufbereiteten Werke mit ihren zentralen Thesen und dazugehörigen Details zurückgreifen.
 
 ![Screenshot des Startbildschirms](docs/img/Home.jpg)
 
@@ -21,11 +21,11 @@ So nehmen Sie die Anwendung in Betrieb:
 2. Führen Sie den Befehl `npm start` aus um die Anwendung zu starten. Der Inhalt des `/app`-Verzeichnis ist anschließend über die Adresse `http://localhost:8000/app` erreichbar.
 
 
-Das ist der Link zu einer funktionierenden, im WWW-gehosteten Version der Anwendung (auf Groß- & Kleinschreibung achten): <a href="https://kotjik.github.io/Zettelkasten/">https://kotjik.github.io/Zettelkasten/</a>
+Das ist der Link zu einer funktionierenden, im WWW-gehosteten Version der Anwendung (auf Groß- & Kleinschreibung achten): <a href="https://kotjik.github.io/Zettelkasten-Online/app/index.html">https://kotjik.github.io/Zettelkasten-Online/app/index.html</a>
 
 ## Beschreibung
 
-Zettelkasten Online ist eine Webanwendung für Wissenschaftler und Studierende aus der ganzen Welt. Über ein einfaches Interface können die wichtigsten Informationen zu einem wissenschaftlichen Werk als "digitale Zettel" gespeichert werden. Nutzer können eine Liste aller eingegebenen Zettel einsehen, welche gefiltert, sortiert und gesucht werden können. Zusätzlich ist eine nachträgliche Bearbeitung und die unwiderrufliche Löschung von Zetteln möglich. 
+Zettelkasten Online ist eine Webanwendung für Wissenschaftler und Studierende aus der ganzen Welt. Über ein einfaches Interface können die wichtigsten Informationen zu einem wissenschaftlichen Werk als "digitale Zettel" gespeichert werden. Nutzer können eine Liste aller eingegebenen Zettel einsehen, welche gefiltert, sortiert und gesucht werden können. Zusätzlich ist eine nachträgliche Bearbeitung und die unwiderrufliche Löschung von Zetteln möglich.
 
 ## Features
 
@@ -75,11 +75,9 @@ Sind alle Details eingegeben, kann der angelegte Zettel gespeichert und zur Best
 <p align="center"><img alt="Screenshot der Kriterienauswahl zum Sortieren" src="docs/img/Sortiermöglichkeiten.jpg" height="150" /></p>
 
 
-- *Quellen-* und *Themen-Übersicht*: Der Nutzer kann durch die Auswahl des Menüpunktes *Quellen* sich eine Auflistung aller Quellen anzeigen lassen, bei der neben dem *Titel* auch die *Anzahl* der Zettel mit dieser Quelle angezeigt wird. Klickt man auf eine der Quellen erhält man auf der rechten Seite eine Aufzählung über alle Zettel der entsprechenden Quelle. 
+- *Quellen-* und *Themen-Übersicht*: Der Nutzer kann durch die Auswahl des Menüpunktes *Quellen* sich eine Auflistung aller Quellen anzeigen lassen, bei der neben dem *Titel* auch die *Anzahl* der Zettel mit dieser Quelle angezeigt wird. Klickt man auf eine der Quellen erhält man auf der rechten Seite eine Aufzählung über alle Zettel der entsprechenden Quelle.
 Äquivalent ist der Menüpunkt der *Themen*.
 
 <p float="left"><img alt="Screenshot der Quellen-Übersicht" src="docs/img/Quellen.jpg" height="220" />
 <img alt="Screenshot der Themen-Übersicht" src="docs/img/Themen.jpg" height="220" />
   </p>
-
-
